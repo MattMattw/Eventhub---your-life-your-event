@@ -32,19 +32,19 @@ Rappresenta un utente registrato all’interno della piattaforma.
 
 Rappresenta un evento creato da un utente (organizzatore).
 
-| Campo | Tipo | Descrizione |
-|-------|------|-------------|
-| `_id` | ObjectId | Identificativo univoco evento |
-| `title` | String | Titolo dell’evento |
+| Campo         | Tipo | Descrizione |
+|---------------|------|-------------|
+| `_id`         | ObjectId | Identificativo univoco evento |
+| `title`       | String | Titolo dell’evento |
 | `description` | String | Descrizione dettagliata dell’evento |
-| `date` | Date | Data e ora dell’evento |
-| `location` | String | Luogo o città in cui si svolge |
-| `category` | String | Categoria dell’evento (es. tecnologia, sport, cultura...) |
-| `capacity` | Number | Numero massimo di partecipanti |
-| `imageURL` | String | URL immagine di copertina (facoltativo) |
-| `creatorRef` | ObjectId (User) | Riferimento all’utente che ha creato l’evento |
-| `status` | String | Stato approvazione evento: `'pending'`, `'approved'`, `'rejected'` |
-| `createdAt` | Date | Data di creazione evento |
+| `date`        | Date | Data e ora dell’evento |
+| `location`    | String | Luogo o città in cui si svolge |
+| `category`    | String | Categoria dell’evento (es. tecnologia, sport, cultura...) |
+| `capacity`    | Number | Numero massimo di partecipanti |
+| `imageURL`    | String | URL immagine di copertina (facoltativo) |
+| `creatorRef`  | ObjectId (User) | Riferimento all’utente che ha creato l’evento |
+| `status`      | String | Stato approvazione evento: `'pending'`, `'approved'`, `'rejected'` |
+| `createdAt`   | Date | Data di creazione evento |
 
 **Relazioni:**
 - Un evento **appartiene a un utente creatore** (`creatorRef`).
@@ -76,7 +76,7 @@ Serve a gestire la relazione **molti-a-molti** tra `User` e `Event`.
 ## 💬 Message
 
 Rappresenta un messaggio inviato nella chat interna di un evento.  
-La chat è **in tempo reale** tramite Socket.io.  
+La chat è **in tempo reale** tramite Socket.io (WebSocket).  
 I messaggi **possono essere non persistenti** (solo in memoria) oppure **persistiti** se in futuro si desidera uno storico.
 
 | Campo | Tipo | Descrizione |
@@ -88,20 +88,20 @@ I messaggi **possono essere non persistenti** (solo in memoria) oppure **persist
 | `createdAt` | Date | Data e ora di invio del messaggio |
 
 **Nota:**  
-Attualmente i messaggi **non vengono salvati nel database**.  
+I messaggi **NON vengono salvati nel database**.  
 Sono gestiti **solo in memoria** durante la sessione Socket.io e scompaiono alla disconnessione o al riavvio del server.
 
 ---
 
 ## ⚙️ Relazioni principali (riepilogo)
 
-| Entità A | Relazione | Entità B | Tipo relazione |
-|-----------|------------|-----------|----------------|
-| User | crea | Event | 1 → N |
+| Entità A | Relazione | Entità B | Tipologia relazione          |
+|-----------|------------|-----------|------------------------------|
+| User | crea | Event | 1 → N                        |
 | User | si iscrive a | Event | N ↔ N (tramite Registration) |
-| User | invia messaggi in | Event | N → N (via Message) |
-| Admin (User) | modera | Event / User | gestione privilegi |
-| Event | contiene | Message | 1 → N |
+| User | invia messaggi in | Event | N → N (via Message)          |
+| Admin (User) | modera | Event / User | gestione privilegi           |
+| Event | contiene | Message | 1 → N                        |
 
 ---
 
