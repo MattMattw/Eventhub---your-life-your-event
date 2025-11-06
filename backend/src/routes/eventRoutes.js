@@ -17,7 +17,11 @@ router.post('/', [
 ], eventController.createEvent);
 
 // Get all events
+// Public events
 router.get('/', eventController.getEvents);
+
+// Get events created by the authenticated user
+router.get('/my', authMiddleware, eventController.getMyEvents);
 
 // Get single event
 router.get('/:id', eventController.getEvent);

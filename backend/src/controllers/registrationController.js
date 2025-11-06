@@ -1,5 +1,8 @@
 const Registration = require('../models/registration');
 const Event = require('../models/event');
+const { getIo } = require('../sockets/chatSocket');
+const { sendEmail } = require('../utils/email');
+const User = require('../models/user');
 
 exports.createRegistration = async (req, res) => {
     try {
@@ -22,6 +25,42 @@ exports.createRegistration = async (req, res) => {
         });
 
         await registration.save();
+
+        // Emit real-time notification to event chat room
+        try {
+            const io = getIo();
+            io.to(`event-${eventId}`).emit('registration', {
+                registrationId: registration._id,
+                eventId,
+                userId: req.user.id,
+                ticketQuantity,
+                totalPrice
+            });
+
+            // Notify admins
+            io.to('admins').emit('adminNotification', {
+                type: 'registration',
+                registrationId: registration._id,
+                eventId,
+                userId: req.user.id
+            });
+        } catch (err) {
+            console.warn('Socket.io not initialized, skipping notifications');
+        }
+
+        // Send email to event organizer (if available)
+        try {
+            const eventOrganizer = await User.findById(event.organizer);
+            if (eventOrganizer && eventOrganizer.email) {
+                await sendEmail({
+                    to: eventOrganizer.email,
+                    subject: `New registration for your event: ${event.title}`,
+                    text: `User ${req.user.username || req.user.id} registered for ${event.title}. Quantity: ${ticketQuantity}`
+                });
+            }
+        } catch (err) {
+            console.warn('Failed to send organizer email', err);
+        }
 
         res.status(201).json(registration);
     } catch (error) {
@@ -106,6 +145,24 @@ exports.cancelRegistration = async (req, res) => {
 
         registration.status = 'cancelled';
         await registration.save();
+
+        // Notify via socket
+        try {
+            const io = getIo();
+            io.to(`event-${registration.event}`).emit('registrationCancelled', {
+                registrationId: registration._id,
+                eventId: registration.event,
+                userId: req.user.id
+            });
+            io.to('admins').emit('adminNotification', {
+                type: 'registrationCancelled',
+                registrationId: registration._id,
+                eventId: registration.event,
+                userId: req.user.id
+            });
+        } catch (err) {
+            console.warn('Socket.io not initialized, skipping cancel notifications');
+        }
 
         res.json({ message: 'Registration cancelled' });
     } catch (error) {

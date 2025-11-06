@@ -1,5 +1,6 @@
 const socketIo = require('socket.io');
 const jwt = require('../utils/jwt');
+const User = require('../models/user');
 
 let io;
 
@@ -24,6 +25,16 @@ exports.initializeSocket = (server) => {
         }
 
         socket.userId = decoded.userId;
+
+        // Attach role info by looking up user (non-blocking)
+        User.findById(decoded.userId).then(user => {
+            if (user && user.role === 'admin') {
+                socket.join('admins');
+                socket.isAdmin = true;
+            }
+        }).catch(err => {
+            console.warn('Unable to fetch user for socket role check', err);
+        });
         next();
     });
 

@@ -26,6 +26,9 @@ exports.getEvents = async (req, res) => {
         const { category, date, search } = req.query;
         let query = {};
 
+        // Only show published events in the public catalog
+        query.status = 'published';
+
         if (category) {
             query.category = category;
         }
@@ -111,6 +114,16 @@ exports.deleteEvent = async (req, res) => {
         res.json({ message: 'Event removed' });
     } catch (error) {
         console.error('Delete event error:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
+exports.getMyEvents = async (req, res) => {
+    try {
+        const events = await Event.find({ organizer: req.user.id }).sort({ date: 1 });
+        res.json(events);
+    } catch (error) {
+        console.error('Get my events error:', error);
         res.status(500).json({ message: 'Server error' });
     }
 };

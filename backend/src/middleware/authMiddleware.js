@@ -19,6 +19,10 @@ module.exports = async (req, res, next) => {
             return res.status(401).json({ message: 'Token is not valid' });
         }
 
+        if (user.isBlocked) {
+            return res.status(403).json({ message: 'User is blocked' });
+        }
+
         // Add user to request object
         req.user = user;
         next();
