@@ -1,14 +1,26 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../middleware/authMiddleware');
-const admin = require('../middleware/adminMiddleware');
+const adminAuth = require('../middleware/adminAuth');
 const adminController = require('../controllers/adminController');
 
-router.get('/reports', auth, admin, adminController.getReports);
-router.post('/reports/:id/resolve', auth, admin, adminController.resolveReport);
-router.post('/events/:id/approve', auth, admin, adminController.approveEvent);
-router.post('/events/:id/reject', auth, admin, adminController.rejectEvent);
-router.post('/users/:id/block', auth, admin, adminController.blockUser);
-router.post('/users/:id/unblock', auth, admin, adminController.unblockUser);
+// Applica il middleware di autenticazione admin a tutte le routes
+router.use(adminAuth);
+
+// Dashboard stats
+router.get('/stats', adminController.getStats);
+
+// Events management
+router.get('/events', adminController.getEvents);
+router.patch('/events/:id/status', adminController.updateEventStatus);
+router.delete('/events/:id', adminController.deleteEvent);
+
+// Users management
+router.get('/users', adminController.getUsers);
+router.patch('/users/:id/status', adminController.updateUserStatus);
+router.patch('/users/:id/role', adminController.updateUserRole);
+
+// Reports management
+router.get('/reports', adminController.getReports);
+router.patch('/reports/:id', adminController.updateReportStatus);
 
 module.exports = router;

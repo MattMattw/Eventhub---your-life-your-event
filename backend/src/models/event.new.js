@@ -10,9 +10,19 @@ const eventSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    date: {
+    startDate: {
         type: Date,
         required: true
+    },
+    endDate: {
+        type: Date,
+        required: true,
+        validate: {
+            validator: function(value) {
+                return value > this.startDate;
+            },
+            message: 'La data di fine deve essere successiva alla data di inizio'
+        }
     },
     location: {
         type: String,
@@ -29,7 +39,8 @@ const eventSchema = new mongoose.Schema({
     },
     capacity: {
         type: Number,
-        required: true
+        required: true,
+        min: 1
     },
     price: {
         type: Number,
@@ -59,28 +70,21 @@ const eventSchema = new mongoose.Schema({
         default: false
     },
     tags: [{
-        type: String
+        type: String,
+        trim: true
     }]
-    },
-    blockReason: {
-        type: String
-    },
-    availableSpots: {
-        type: Number,
-        required: true,
-        default: function() {
-            return this.capacity;
-        }
-    },
-    isPrivate: {
-        type: Boolean,
-        default: false
-    },
-    tags: [{
-        type: String
-    }}
 }, {
     timestamps: true
+});
+
+// Virtual per verificare se l'evento è completo
+eventSchema.virtual('isFull').get(function() {
+    return this.availableSpots === 0;
+});
+
+// Virtual per verificare se l'evento è passato
+eventSchema.virtual('isPast').get(function() {
+    return this.endDate < new Date();
 });
 
 module.exports = mongoose.model('Event', eventSchema);
