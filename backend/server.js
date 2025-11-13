@@ -1,7 +1,7 @@
-const app = require('./app');
+const app = require('./src/app');
 const mongoose = require('mongoose');
 const { createServer } = require('http');
-const { initializeSocket } = require('./sockets/chatSocket');
+const { initializeSocket } = require('./src/sockets/chatSocket');
 require('dotenv').config();
 
 const port = process.env.PORT || 3000;
