@@ -23,6 +23,7 @@
     "socket.io": "^4.7.2"
   },
   "devDependencies": {
+    "axios": "^1.5.1",
     "jest": "^29.7.0",
     "nodemon": "^3.0.1"
   }

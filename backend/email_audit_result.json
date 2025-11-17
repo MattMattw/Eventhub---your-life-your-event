@@ -1,0 +1,112 @@
+[
+  {
+    "step": "register",
+    "status": 201,
+    "data": {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTFiNDRlY2Q3MDFkYzU0NzM3YTBkZTciLCJpYXQiOjE3NjMzOTQ3OTYsImV4cCI6MTc2MzQ4MTE5Nn0.InV6TdS1RhnLtuq0cjepE9CQbzPJnjNAgmE225JCK6M",
+      "user": {
+        "id": "691b44ecd701dc54737a0de7",
+        "username": "audituser_1763394796293",
+        "email": "audit+1763394796293@example.com",
+        "firstName": "Audit",
+        "lastName": "User",
+        "role": "user",
+        "isVerified": false
+      },
+      "message": "Registration successful. Please verify your email."
+    }
+  },
+  {
+    "step": "verify",
+    "error": {
+      "message": "Invalid or expired verification token"
+    }
+  },
+  {
+    "step": "request-reset",
+    "status": 200,
+    "data": {
+      "message": "If email exists, reset link has been sent"
+    }
+  },
+  {
+    "step": "login",
+    "status": 200,
+    "data": {
+      "user": "691b44ecd701dc54737a0de7"
+    }
+  },
+  {
+    "step": "create-event",
+    "status": 201,
+    "data": {
+      "title": "Audit Event",
+      "description": "Event created by audit script",
+      "date": "2025-11-18T15:53:17.883Z",
+      "location": "Online",
+      "category": "audit",
+      "organizer": "691b44ecd701dc54737a0de7",
+      "capacity": 10,
+      "price": 0,
+      "status": "published",
+      "isPrivate": false,
+      "tags": [],
+      "_id": "691b44edd701dc54737a0dee",
+      "availableSpots": 10,
+      "createdAt": "2025-11-17T15:53:17.887Z",
+      "updatedAt": "2025-11-17T15:53:17.887Z",
+      "__v": 0
+    }
+  },
+  {
+    "step": "register-event",
+    "status": 201,
+    "data": {
+      "event": "691b44edd701dc54737a0dee",
+      "user": "691b44ecd701dc54737a0de7",
+      "status": "confirmed",
+      "ticketQuantity": 1,
+      "totalPrice": 0,
+      "paymentStatus": "pending",
+      "_id": "691b44edd701dc54737a0df3",
+      "createdAt": "2025-11-17T15:53:17.894Z",
+      "updatedAt": "2025-11-17T15:53:17.894Z",
+      "__v": 0
+    }
+  },
+  {
+    "step": "cancel-registration",
+    "status": 200,
+    "data": {
+      "message": "Registration cancelled"
+    }
+  },
+  {
+    "step": "create-report",
+    "status": 201,
+    "data": {
+      "type": "event",
+      "reporter": {
+        "_id": "691b44ecd701dc54737a0de7",
+        "username": "audituser_1763394796293",
+        "email": "audit+1763394796293@example.com"
+      },
+      "event": {
+        "_id": "691b44edd701dc54737a0dee",
+        "title": "Audit Event"
+      },
+      "reason": "spam",
+      "description": "Audit report",
+      "status": "pending",
+      "_id": "691b44f0d701dc54737a0e02",
+      "createdAt": "2025-11-17T15:53:20.547Z",
+      "updatedAt": "2025-11-17T15:53:20.547Z",
+      "__v": 0
+    }
+  },
+  {
+    "step": "delete-event",
+    "status": "skipped",
+    "data": "No admin credentials provided"
+  }
+]

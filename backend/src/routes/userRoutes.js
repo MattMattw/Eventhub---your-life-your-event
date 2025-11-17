@@ -29,4 +29,29 @@ router.put('/profile', authMiddleware, [
     check('lastName', 'Last name is required').optional().not().isEmpty()
 ], userController.updateProfile);
 
+// Request password reset
+router.post('/forgot-password', [
+    check('email', 'Please include a valid email').isEmail()
+], userController.requestPasswordReset);
+
+// Reset password
+router.post('/reset-password', [
+    check('token', 'Reset token is required').not().isEmpty(),
+    check('password', 'Password must be 6 or more characters').isLength({ min: 6 }),
+    check('passwordConfirm', 'Password confirmation is required').not().isEmpty()
+], userController.resetPassword);
+
+// Logout user
+router.post('/logout', authMiddleware, userController.logout);
+
+// Verify email
+router.post('/verify-email', [
+    check('token', 'Verification token is required').not().isEmpty()
+], userController.verifyEmail);
+
+// Resend verification email
+router.post('/resend-verification', [
+    check('email', 'Please include a valid email').isEmail()
+], userController.resendVerificationEmail);
+
 module.exports = router;

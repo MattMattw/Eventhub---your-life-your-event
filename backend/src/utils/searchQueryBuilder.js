@@ -22,21 +22,27 @@ const buildSearchQuery = (baseQuery = {}, options = {}) => {
         return isNaN(dt.getTime()) ? null : dt;
     };
 
+    // escape per evitare che caratteri speciali rompano il regex
+    const escapeRegex = (str) => {
+        return String(str).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    };
+
     const startDt = sanitizeDate(startDate);
     const endDt = sanitizeDate(endDate);
 
     // Ricerca testuale con fallback su title/description per evitare crash
     if (search) {
+        const regex = { $regex: escapeRegex(search), $options: 'i' };
         if (Array.isArray(options.searchFields) && options.searchFields.length > 0) {
-            query.$or = options.searchFields.map(field => ({
-                [field]: { $regex: search, $options: 'i' }
-            }));
+            const fieldsOr = options.searchFields.map(field => ({ [field]: regex }));
+            query.$or = Array.isArray(query.$or) ? query.$or.concat(fieldsOr) : fieldsOr;
         } else {
             // fallback non invasivo: cerca in title e description se presenti
-            query.$or = [
-                { title: { $regex: search, $options: 'i' } },
-                { description: { $regex: search, $options: 'i' } }
+            const fallbackOr = [
+                { title: regex },
+                { description: regex }
             ];
+            query.$or = Array.isArray(query.$or) ? query.$or.concat(fallbackOr) : fallbackOr;
         }
     }
 
@@ -47,13 +53,10 @@ const buildSearchQuery = (baseQuery = {}, options = {}) => {
 
     // Filtro per date usando il campo configurabile
     if (startDt || endDt) {
-        query[dateField] = {};
-        if (startDt) {
-            query[dateField].$gte = startDt;
-        }
-        if (endDt) {
-            query[dateField].$lte = endDt;
-        }
+        const dateObj = {};
+        if (startDt) dateObj.$gte = startDt;
+        if (endDt) dateObj.$lte = endDt;
+        if (Object.keys(dateObj).length) query[dateField] = dateObj;
     }
 
     // Filtro per categoria
@@ -83,13 +86,10 @@ const buildSearchQuery = (baseQuery = {}, options = {}) => {
     const sortField = sortBy || 'createdAt';
     const sort = { [sortField]: sortOrder === 'asc' ? 1 : -1 };
 
-    return {
-        query,
-        sort
-    };
+    return { query, sort };
 };
 
 module.exports = buildSearchQuery;
 // compatibilità con import ES
 module.exports.default = buildSearchQuery;
-exports.default = buildSearchQuery;
+module.exports.buildSearchQuery = buildSearchQuery;

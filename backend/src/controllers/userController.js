@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const jwt = require('../utils/jwt');
+const { sendEmail } = require('../utils/email');
 const { validationResult } = require('express-validator');
 
 exports.register = async (req, res) => {
@@ -23,24 +24,51 @@ exports.register = async (req, res) => {
             email,
             password,
             firstName,
-            lastName
+            lastName,
+            isVerified: false
         });
 
+        // Generate verification token
+        const verificationToken = user.generateVerificationToken();
         await user.save();
 
-        // Generate JWT token
+        // Create verification URL
+        const verificationUrl = `${process.env.FRONTEND_URL || 'http://localhost:5173'}/verify-email/${verificationToken}`;
+
+        try {
+            await sendEmail({
+                to: user.email,
+                subject: 'Email Verification - EventHub',
+                html: `
+                    <h2>Welcome to EventHub!</h2>
+                    <p>Please verify your email address to complete your registration.</p>
+                    <a href="${verificationUrl}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">
+                        Verify Email
+                    </a>
+                    <p>Link expires in 24 hours.</p>
+                    <p>If you didn't sign up for EventHub, please ignore this email.</p>
+                `
+            });
+        } catch (err) {
+            console.warn('Failed to send verification email', err);
+            // Continue anyway - user can request new verification email
+        }
+
+        // Generate JWT token (can be used immediately, but features limited until verified)
         const token = jwt.generateToken(user._id);
 
         res.status(201).json({
             token,
             user: {
-                id: user._id,
+                id: user._id.toString(),
                 username: user.username,
                 email: user.email,
                 firstName: user.firstName,
                 lastName: user.lastName,
-                role: user.role
-            }
+                role: user.role,
+                isVerified: user.isVerified
+            },
+            message: 'Registration successful. Please verify your email.'
         });
     } catch (error) {
         console.error('Registration error:', error);
@@ -70,7 +98,7 @@ exports.login = async (req, res) => {
         res.json({
             token,
             user: {
-                id: user._id,
+                id: user._id.toString(),
                 username: user.username,
                 email: user.email,
                 firstName: user.firstName,
@@ -87,7 +115,18 @@ exports.login = async (req, res) => {
 exports.getProfile = async (req, res) => {
     try {
         const user = await User.findById(req.user.id).select('-password');
-        res.json(user);
+        if (!user) return res.status(404).json({ message: 'User not found' });
+
+        // Return a consistent shape (same as register/login responses)
+        res.json({
+            id: user._id.toString(),
+            username: user.username,
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            role: user.role,
+            isVerified: user.isVerified
+        });
     } catch (error) {
         console.error('Get profile error:', error);
         res.status(500).json({ message: 'Server error' });
@@ -121,6 +160,185 @@ exports.updateProfile = async (req, res) => {
         });
     } catch (error) {
         console.error('Update profile error:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
+exports.requestPasswordReset = async (req, res) => {
+    try {
+        const { email } = req.body;
+
+        const user = await User.findOne({ email });
+        if (!user) {
+            // Don't reveal if email exists
+            return res.status(200).json({ message: 'If email exists, reset link has been sent' });
+        }
+
+        // Generate reset token
+        const resetToken = user.generatePasswordResetToken();
+        await user.save({ validateBeforeSave: false });
+
+        // Create reset URL
+        const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:5173'}/reset-password/${resetToken}`;
+
+        try {
+            await sendEmail({
+                to: user.email,
+                subject: 'Password Reset Request - EventHub',
+                html: `
+                    <h2>Password Reset Request</h2>
+                    <p>You requested a password reset. Click the link below to reset your password:</p>
+                    <a href="${resetUrl}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">
+                        Reset Password
+                    </a>
+                    <p>Link expires in 1 hour.</p>
+                    <p>If you didn't request this, please ignore this email.</p>
+                `
+            });
+        } catch (err) {
+            // Log the error but don't fail the request: user experience should not reveal email delivery issues
+            console.warn('Error sending password reset email (continuing):', err?.message || err);
+        }
+
+        res.status(200).json({ message: 'If email exists, reset link has been sent' });
+    } catch (error) {
+        console.error('Request password reset error:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
+exports.resetPassword = async (req, res) => {
+    try {
+        const { token, password, passwordConfirm } = req.body;
+
+        if (!token || !password || !passwordConfirm) {
+            return res.status(400).json({ message: 'Missing required fields' });
+        }
+
+        if (password !== passwordConfirm) {
+            return res.status(400).json({ message: 'Passwords do not match' });
+        }
+
+        if (password.length < 6) {
+            return res.status(400).json({ message: 'Password must be at least 6 characters' });
+        }
+
+        // Find user with valid reset token
+        const user = await User.findOne({
+            passwordResetToken: require('crypto').createHash('sha256').update(token).digest('hex'),
+            passwordResetExpires: { $gt: Date.now() }
+        });
+
+        if (!user) {
+            return res.status(400).json({ message: 'Invalid or expired reset token' });
+        }
+
+        // Update password
+        user.password = password;
+        user.clearPasswordResetToken();
+        await user.save();
+
+        res.status(200).json({ message: 'Password has been reset successfully' });
+    } catch (error) {
+        console.error('Reset password error:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
+exports.logout = async (req, res) => {
+    try {
+        // In a production app, you would:
+        // 1. Add token to a blacklist (Redis or DB)
+        // 2. Clear any server-side sessions
+        // 3. Invalidate refresh tokens
+        // 
+        // For now, logout is client-side (token removed from localStorage)
+        // Client should delete the token and redirect to login
+        
+        res.status(200).json({ message: 'Logged out successfully' });
+    } catch (error) {
+        console.error('Logout error:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
+exports.verifyEmail = async (req, res) => {
+    try {
+        const { token } = req.body;
+
+        if (!token) {
+            return res.status(400).json({ message: 'Verification token is required' });
+        }
+
+        // Find user with valid verification token
+        const user = await User.findOne({
+            verificationToken: require('crypto').createHash('sha256').update(token).digest('hex'),
+            verificationTokenExpires: { $gt: Date.now() }
+        });
+
+        if (!user) {
+            return res.status(400).json({ message: 'Invalid or expired verification token' });
+        }
+
+        // Mark email as verified
+        user.isVerified = true;
+        user.clearVerificationToken();
+        await user.save();
+
+        res.status(200).json({ message: 'Email verified successfully' });
+    } catch (error) {
+        console.error('Verify email error:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
+exports.resendVerificationEmail = async (req, res) => {
+    try {
+        const { email } = req.body;
+
+        if (!email) {
+            return res.status(400).json({ message: 'Email is required' });
+        }
+
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        if (user.isVerified) {
+            return res.status(400).json({ message: 'Email already verified' });
+        }
+
+        // Generate new verification token
+        const verificationToken = user.generateVerificationToken();
+        await user.save({ validateBeforeSave: false });
+
+        // Create verification URL
+        const verificationUrl = `${process.env.FRONTEND_URL || 'http://localhost:5173'}/verify-email/${verificationToken}`;
+
+        try {
+            await sendEmail({
+                to: user.email,
+                subject: 'Email Verification - EventHub',
+                html: `
+                    <h2>Verify Your Email</h2>
+                    <p>Please verify your email address to activate your EventHub account.</p>
+                    <a href="${verificationUrl}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">
+                        Verify Email
+                    </a>
+                    <p>Link expires in 24 hours.</p>
+                    <p>If you didn't request this, please ignore this email.</p>
+                `
+            });
+        } catch (err) {
+            user.clearVerificationToken();
+            await user.save({ validateBeforeSave: false });
+            return res.status(500).json({ message: 'Error sending email' });
+        }
+
+        res.status(200).json({ message: 'Verification email sent' });
+    } catch (error) {
+        console.error('Resend verification email error:', error);
         res.status(500).json({ message: 'Server error' });
     }
 };

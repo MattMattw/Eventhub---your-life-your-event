@@ -8,10 +8,19 @@ exports.createEvent = async (req, res) => {
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const event = new Event({
+        // Default created events to 'published' unless a status is explicitly provided
+        const eventData = {
             ...req.body,
-            organizer: req.user.id
-        });
+            organizer: req.user.id,
+            status: req.body.status || 'published'
+        };
+
+        const event = new Event(eventData);
+
+        // Ensure availableSpots is initialized based on capacity if not provided
+        if (!event.availableSpots && event.capacity) {
+            event.availableSpots = event.capacity;
+        }
 
         await event.save();
         res.status(201).json(event);

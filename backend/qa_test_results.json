@@ -1,0 +1,91 @@
+{
+  "timestamp": "2025-11-17T16:07:58.858Z",
+  "tests": [
+    {
+      "name": "User Registration",
+      "status": "PASS"
+    },
+    {
+      "name": "Email Verification (token-via-email)",
+      "status": "SKIP",
+      "reason": "Token sent via email in production"
+    },
+    {
+      "name": "Email Verification (token from registration)",
+      "status": "PASS"
+    },
+    {
+      "name": "User Login",
+      "status": "PASS"
+    },
+    {
+      "name": "Get User Profile",
+      "status": "PASS"
+    },
+    {
+      "name": "Request Password Reset",
+      "status": "PASS"
+    },
+    {
+      "name": "Create Event",
+      "status": "PASS"
+    },
+    {
+      "name": "Get All Events (Public)",
+      "status": "PASS"
+    },
+    {
+      "name": "Get Event by ID",
+      "status": "PASS"
+    },
+    {
+      "name": "Register for Event",
+      "status": "PASS"
+    },
+    {
+      "name": "Get User Registrations",
+      "status": "PASS"
+    },
+    {
+      "name": "Cancel Registration",
+      "status": "PASS"
+    },
+    {
+      "name": "Create Report (Event)",
+      "status": "PASS"
+    },
+    {
+      "name": "Admin Login",
+      "status": "PASS"
+    },
+    {
+      "name": "Admin Get Stats",
+      "status": "PASS"
+    },
+    {
+      "name": "Admin Get Events",
+      "status": "PASS"
+    },
+    {
+      "name": "Admin Get Users",
+      "status": "PASS"
+    },
+    {
+      "name": "Admin Get Reports",
+      "status": "PASS"
+    },
+    {
+      "name": "Admin Block/Unblock User",
+      "status": "PASS"
+    },
+    {
+      "name": "Email Log File Created",
+      "status": "PASS"
+    }
+  ],
+  "summary": {
+    "passed": 19,
+    "failed": 0,
+    "skipped": 1
+  }
+}

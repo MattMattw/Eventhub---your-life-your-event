@@ -8,6 +8,12 @@
             "args": ["start"],
             "cwd": "${workspaceFolder}/backend",
             "isBackground": true,
+            "options": {
+                "shell": {
+                    "executable": "${env:COMSPEC}",
+                    "args": ["/c"]
+                }
+            },
             "problemMatcher": {
                 "pattern": {
                     "regexp": "^.*$",
@@ -35,6 +41,12 @@
             "args": ["start"],
             "cwd": "${workspaceFolder}/frontend",
             "isBackground": true,
+            "options": {
+                "shell": {
+                    "executable": "${env:COMSPEC}",
+                    "args": ["/c"]
+                }
+            },
             "presentation": {
                 "echo": true,
                 "reveal": "always",

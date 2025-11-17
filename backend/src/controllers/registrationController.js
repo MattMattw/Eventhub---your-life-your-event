@@ -14,6 +14,35 @@ exports.createRegistration = async (req, res) => {
             return res.status(404).json({ message: 'Event not found' });
         }
 
+        // Check if event is published
+        if (event.status !== 'published') {
+            return res.status(400).json({ 
+                message: `Event is not available for registration (status=${event.status} availableSpots=${event.availableSpots})` 
+            });
+        }
+
+        // Check if user already registered for this event
+        const existingRegistration = await Registration.findOne({
+            event: eventId,
+            user: req.user.id,
+            status: { $in: ['pending', 'confirmed'] }
+        });
+        if (existingRegistration) {
+            return res.status(400).json({ message: 'User already registered for this event' });
+        }
+
+        // Validate ticket quantity
+        if (!ticketQuantity || ticketQuantity < 1) {
+            return res.status(400).json({ message: 'Ticket quantity must be at least 1' });
+        }
+
+        // Check available spots
+        if (event.availableSpots < ticketQuantity) {
+            return res.status(400).json({ 
+                message: `Not enough available spots. Only ${event.availableSpots} spots remaining` 
+            });
+        }
+
         // Calculate total price
         const totalPrice = event.price * ticketQuantity;
 
@@ -21,10 +50,15 @@ exports.createRegistration = async (req, res) => {
             event: eventId,
             user: req.user.id,
             ticketQuantity,
-            totalPrice
+            totalPrice,
+            status: 'confirmed'
         });
 
         await registration.save();
+
+        // Decrement available spots
+        event.availableSpots -= ticketQuantity;
+        await event.save();
 
         // Emit real-time notification to event chat room
         try {
@@ -60,6 +94,26 @@ exports.createRegistration = async (req, res) => {
             }
         } catch (err) {
             console.warn('Failed to send organizer email', err);
+        }
+
+        // Send confirmation email to the registering user
+        try {
+            const registeringUser = await User.findById(req.user.id);
+            if (registeringUser && registeringUser.email) {
+                await sendEmail({
+                    to: registeringUser.email,
+                    subject: `Registration confirmed: ${event.title}`,
+                    html: `
+                        <p>Ciao ${registeringUser.username || ''},</p>
+                        <p>La tua iscrizione all'evento <strong>${event.title}</strong> è stata confermata.</p>
+                        <p>Quantità biglietti: ${ticketQuantity}</p>
+                        <p>Totale pagato: ${totalPrice} ${event.price ? '' : ''}</p>
+                        <p>Grazie per aver usato EventHub.</p>
+                    `
+                });
+            }
+        } catch (err) {
+            console.warn('Failed to send confirmation email to user', err);
         }
 
         res.status(201).json(registration);
@@ -143,8 +197,23 @@ exports.cancelRegistration = async (req, res) => {
             return res.status(403).json({ message: 'Not authorized' });
         }
 
+        // Prevent cancelling already cancelled registration
+        if (registration.status === 'cancelled') {
+            return res.status(400).json({ message: 'Registration already cancelled' });
+        }
+
+        const previousStatus = registration.status;
         registration.status = 'cancelled';
         await registration.save();
+
+        // Increment available spots (only if was confirmed or pending)
+        if (previousStatus !== 'cancelled') {
+            const event = await Event.findById(registration.event);
+            if (event) {
+                event.availableSpots += registration.ticketQuantity;
+                await event.save();
+            }
+        }
 
         // Notify via socket
         try {
@@ -162,6 +231,37 @@ exports.cancelRegistration = async (req, res) => {
             });
         } catch (err) {
             console.warn('Socket.io not initialized, skipping cancel notifications');
+        }
+
+        // Send cancellation emails to organizer and user
+        try {
+            const event = await Event.findById(registration.event).populate('organizer', 'username email');
+            const user = await User.findById(registration.user);
+
+            if (event && event.organizer && event.organizer.email) {
+                await sendEmail({
+                    to: event.organizer.email,
+                    subject: `Registration cancelled for your event: ${event.title}`,
+                    html: `
+                        <p>Ciao ${event.organizer.username || ''},</p>
+                        <p>L'utente ${user?.username || registration.user} ha annullato l'iscrizione per l'evento <strong>${event.title}</strong>.</p>
+                        <p>Quantità: ${registration.ticketQuantity}</p>
+                    `
+                });
+            }
+
+            if (user && user.email) {
+                await sendEmail({
+                    to: user.email,
+                    subject: `Registration cancelled: ${event ? event.title : ''}`,
+                    html: `
+                        <p>Ciao ${user.username || ''},</p>
+                        <p>La tua iscrizione all'evento <strong>${event ? event.title : ''}</strong> è stata annullata correttamente.</p>
+                    `
+                });
+            }
+        } catch (emailErr) {
+            console.warn('Failed to send cancellation emails', emailErr);
         }
 
         res.json({ message: 'Registration cancelled' });

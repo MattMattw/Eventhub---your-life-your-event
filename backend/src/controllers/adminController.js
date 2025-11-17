@@ -1,10 +1,15 @@
 const User = require('../models/user');
 const Event = require('../models/event');
 const Report = require('../models/report');
+const Registration = require('../models/registration');
+const Message = require('../models/message');
+const { sendEmail } = require('../utils/email');
+const { getIo } = require('../sockets/chatSocket');
 
 // Get admin dashboard statistics
 exports.getStats = async (req, res) => {
     try {
+        // admin getStats
         const [totalUsers, totalEvents, reports] = await Promise.all([
             User.countDocuments(),
             Event.countDocuments(),
@@ -32,6 +37,7 @@ exports.getStats = async (req, res) => {
 // Get all events with advanced search and filters
 exports.getEvents = async (req, res) => {
     try {
+    // admin getEvents
         const { 
             page = 1, 
             limit = 10,
@@ -100,6 +106,7 @@ exports.getEvents = async (req, res) => {
 // Get all reports with pagination and filters
 exports.getReports = async (req, res) => {
     try {
+    // admin getReports
         const { page = 1, limit = 10, status, type } = req.query;
         const query = {};
 
@@ -135,6 +142,7 @@ exports.getReports = async (req, res) => {
 // Get all users with advanced search and filters
 exports.getUsers = async (req, res) => {
     try {
+    // admin getUsers
         const { 
             page = 1, 
             limit = 10,
@@ -246,12 +254,44 @@ exports.deleteEvent = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const event = await Event.findByIdAndDelete(id);
+        // Find the event first so we can notify organizer and get details
+        const event = await Event.findById(id).populate('organizer', 'username email');
         if (!event) {
             return res.status(404).json({ message: 'Evento non trovato' });
         }
 
-        // TODO: Cancella anche le prenotazioni associate e le chat
+        // Delete related registrations, messages and reports
+        await Promise.all([
+            Registration.deleteMany({ event: event._id }),
+            Message.deleteMany({ event: event._id }),
+            Report.deleteMany({ event: event._id })
+        ]);
+
+        // Finally remove the event itself
+        await Event.findByIdAndDelete(id);
+
+        // Notify organizer by email if available
+        try {
+            if (event.organizer && event.organizer.email) {
+                await sendEmail({
+                    to: event.organizer.email,
+                    subject: `Il tuo evento "${event.title}" è stato eliminato`,
+                    text: `Ciao ${event.organizer.username || ''},\n\nL'evento \"${event.title}\" programmato per ${event.date} è stato eliminato dall'amministratore. Se hai bisogno di informazioni, contatta il supporto.`,
+                    html: `<p>Ciao ${event.organizer.username || ''},</p><p>L'evento <strong>${event.title}</strong> è stato eliminato dall'amministratore.</p>`
+                });
+            }
+        } catch (emailErr) {
+            console.warn('Failed to send organizer notification email:', emailErr);
+        }
+
+        // Emit socket notification to admins if socket.io initialized
+        try {
+            const io = getIo();
+            io.to('admins').emit('eventDeleted', { eventId: id, title: event.title });
+        } catch (ioErr) {
+            // ignore if io not initialized
+            console.warn('Socket.io not initialized, skipping admin notification');
+        }
 
         res.json({ message: 'Evento eliminato con successo' });
     } catch (error) {

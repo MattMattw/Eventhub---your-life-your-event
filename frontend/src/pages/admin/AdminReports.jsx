@@ -32,12 +32,14 @@ export default function AdminReports() {
   const [error, setError] = useState(null);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [total, setTotal] = useState(0);
   const [selectedReport, setSelectedReport] = useState(null);
   const [detailsDialogOpen, setDetailsDialogOpen] = useState(false);
 
-  const fetchReports = async () => {
+  const fetchReports = async (pageIndex = page, perPage = rowsPerPage) => {
+    setLoading(true);
     try {
-      const response = await fetch('/api/admin/reports', {
+      const response = await fetch(`/api/admin/reports?page=${pageIndex + 1}&limit=${perPage}`, {
         credentials: 'include'
       });
 
@@ -46,7 +48,8 @@ export default function AdminReports() {
       }
 
       const data = await response.json();
-      setReports(data);
+      setReports(data.reports || []);
+      setTotal(data.total || (data.reports ? data.reports.length : 0));
       setError(null);
     } catch (err) {
       setError(err.message);
@@ -57,7 +60,8 @@ export default function AdminReports() {
 
   useEffect(() => {
     fetchReports();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [page, rowsPerPage]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -171,7 +175,7 @@ export default function AdminReports() {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={reports.length}
+          count={total}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}

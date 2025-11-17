@@ -60,25 +60,15 @@ const eventSchema = new mongoose.Schema({
     },
     tags: [{
         type: String
-    }]
+    }],
+    createdAt: {
+        type: Date,
+        default: Date.now
     },
-    blockReason: {
-        type: String
-    },
-    availableSpots: {
-        type: Number,
-        required: true,
-        default: function() {
-            return this.capacity;
-        }
-    },
-    isPrivate: {
-        type: Boolean,
-        default: false
-    },
-    tags: [{
-        type: String
-    }}
+    updatedAt: {
+        type: Date,
+        default: Date.now
+    }
 }, {
     timestamps: true
 });

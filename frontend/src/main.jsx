@@ -6,6 +6,8 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import App from './App';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import VerifyEmail from './pages/VerifyEmail';
+import ResetPassword from './pages/ResetPassword';
 import EventList from './pages/EventList';
 import EventDetail from './pages/EventDetail';
 import CreateEvent from './pages/CreateEvent';
@@ -62,6 +64,8 @@ createRoot(document.getElementById('root')).render(
               <Route index element={<EventList />} />
               <Route path="login" element={<Login />} />
               <Route path="register" element={<Register />} />
+              <Route path="verify-email/:token" element={<VerifyEmail />} />
+              <Route path="reset-password/:token" element={<ResetPassword />} />
               <Route path="events">
                 <Route path=":id" element={<EventDetail />} />
                 <Route 

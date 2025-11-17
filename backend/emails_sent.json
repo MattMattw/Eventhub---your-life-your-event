@@ -1,0 +1,464 @@
+[
+  {
+    "timestamp": "2025-11-17T13:11:36.458Z",
+    "to": "audit+1763385096280@example.com",
+    "subject": "Email Verification - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Welcome to EventHub!</h2>\n                    <p>Please verify your email address to complete your registration.</p>\n                    <a href=\"http://localhost:5173/verify-email/d2ab4f412c48d0f9f722d05bb592113442dfebd67d9f614fbc15a1ec0bf43ee3\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Verify Email\n                    </a>\n                    <p>Link expires in 24 hours.</p>\n                    <p>If you didn't sign up for EventHub, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T13:11:37.397Z",
+    "to": "audit+1763385096280@example.com",
+    "subject": "Password Reset Request - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Password Reset Request</h2>\n                    <p>You requested a password reset. Click the link below to reset your password:</p>\n                    <a href=\"http://localhost:5173/reset-password/f4930b864d2a5a81e9c4f49d03cd3ad66c7e526a4cf09027e5ddda76b13e89f9\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Reset Password\n                    </a>\n                    <p>Link expires in 1 hour.</p>\n                    <p>If you didn't request this, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T13:11:38.151Z",
+    "to": "audit+1763385096280@example.com",
+    "subject": "New registration for your event: Audit Event",
+    "text": "User audituser_1763385096280 registered for Audit Event. Quantity: 1",
+    "html": ""
+  },
+  {
+    "timestamp": "2025-11-17T13:11:38.845Z",
+    "to": "audit+1763385096280@example.com",
+    "subject": "Registration confirmed: Audit Event",
+    "text": "",
+    "html": "\n                        <p>Ciao audituser_1763385096280,</p>\n                        <p>La tua iscrizione all'evento <strong>Audit Event</strong> è stata confermata.</p>\n                        <p>Quantità biglietti: 1</p>\n                        <p>Totale pagato: 0 </p>\n                        <p>Grazie per aver usato EventHub.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T13:11:39.495Z",
+    "to": "audit+1763385096280@example.com",
+    "subject": "Registration cancelled for your event: Audit Event",
+    "text": "",
+    "html": "\n                        <p>Ciao audituser_1763385096280,</p>\n                        <p>L'utente audituser_1763385096280 ha annullato l'iscrizione per l'evento <strong>Audit Event</strong>.</p>\n                        <p>Quantità: 1</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T13:11:40.479Z",
+    "to": "audit+1763385096280@example.com",
+    "subject": "Registration cancelled: Audit Event",
+    "text": "",
+    "html": "\n                        <p>Ciao audituser_1763385096280,</p>\n                        <p>La tua iscrizione all'evento <strong>Audit Event</strong> è stata annullata correttamente.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T13:14:17.940Z",
+    "to": "test+1763385257796@example.com",
+    "subject": "Email Verification - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Welcome to EventHub!</h2>\n                    <p>Please verify your email address to complete your registration.</p>\n                    <a href=\"http://localhost:5173/verify-email/e6259a44b40966ad3807d4c3a8968be638b985d8a26d1a816f7b22845b5c00dc\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Verify Email\n                    </a>\n                    <p>Link expires in 24 hours.</p>\n                    <p>If you didn't sign up for EventHub, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T13:14:18.881Z",
+    "to": "test+1763385257796@example.com",
+    "subject": "Password Reset Request - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Password Reset Request</h2>\n                    <p>You requested a password reset. Click the link below to reset your password:</p>\n                    <a href=\"http://localhost:5173/reset-password/f630f028c06995cba6cf057f41214dd2e7b09045fe23913fe58ed2ccce9c8ec5\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Reset Password\n                    </a>\n                    <p>Link expires in 1 hour.</p>\n                    <p>If you didn't request this, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T14:13:57.675Z",
+    "to": "audit+1763388837505@example.com",
+    "subject": "Email Verification - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Welcome to EventHub!</h2>\n                    <p>Please verify your email address to complete your registration.</p>\n                    <a href=\"http://localhost:5173/verify-email/6fdccf1183b3801a4a72dedc8bab9dabdd56eb161857b4690e4132196dd57474\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Verify Email\n                    </a>\n                    <p>Link expires in 24 hours.</p>\n                    <p>If you didn't sign up for EventHub, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T14:13:58.614Z",
+    "to": "audit+1763388837505@example.com",
+    "subject": "Password Reset Request - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Password Reset Request</h2>\n                    <p>You requested a password reset. Click the link below to reset your password:</p>\n                    <a href=\"http://localhost:5173/reset-password/2539a72975445fcff76e502a354c3829724142575456d78bdb771b7779887eb0\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Reset Password\n                    </a>\n                    <p>Link expires in 1 hour.</p>\n                    <p>If you didn't request this, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T14:13:59.366Z",
+    "to": "audit+1763388837505@example.com",
+    "subject": "New registration for your event: Audit Event",
+    "text": "User audituser_1763388837505 registered for Audit Event. Quantity: 1",
+    "html": ""
+  },
+  {
+    "timestamp": "2025-11-17T14:13:59.961Z",
+    "to": "audit+1763388837505@example.com",
+    "subject": "Registration confirmed: Audit Event",
+    "text": "",
+    "html": "\n                        <p>Ciao audituser_1763388837505,</p>\n                        <p>La tua iscrizione all'evento <strong>Audit Event</strong> è stata confermata.</p>\n                        <p>Quantità biglietti: 1</p>\n                        <p>Totale pagato: 0 </p>\n                        <p>Grazie per aver usato EventHub.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T14:14:00.607Z",
+    "to": "audit+1763388837505@example.com",
+    "subject": "Registration cancelled for your event: Audit Event",
+    "text": "",
+    "html": "\n                        <p>Ciao audituser_1763388837505,</p>\n                        <p>L'utente audituser_1763388837505 ha annullato l'iscrizione per l'evento <strong>Audit Event</strong>.</p>\n                        <p>Quantità: 1</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T14:14:01.372Z",
+    "to": "audit+1763388837505@example.com",
+    "subject": "Registration cancelled: Audit Event",
+    "text": "",
+    "html": "\n                        <p>Ciao audituser_1763388837505,</p>\n                        <p>La tua iscrizione all'evento <strong>Audit Event</strong> è stata annullata correttamente.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T14:14:01.975Z",
+    "to": "admin@example.com",
+    "subject": "New Report: Event - EventHub",
+    "text": "",
+    "html": "\n                        <h2>New Report Submitted</h2>\n                        <p><strong>Type:</strong> Event</p>\n                        <p><strong>Reason:</strong> spam</p>\n                        <p><strong>Description:</strong> Audit report</p>\n                        <p><strong>Reporter:</strong> audituser_1763388837505 (audit+1763388837505@example.com)</p>\n                        <p><strong>Reported Event:</strong> Audit Event</p>\n                        <p>Please review this report in the admin panel.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T15:51:35.368Z",
+    "to": "audit+1763394695174@example.com",
+    "subject": "Email Verification - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Welcome to EventHub!</h2>\n                    <p>Please verify your email address to complete your registration.</p>\n                    <a href=\"http://localhost:5173/verify-email/084b03f9acca69cf2c551a5a01ee33e42a8cd8ae49a5790e4c7e54decd2bb9c7\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Verify Email\n                    </a>\n                    <p>Link expires in 24 hours.</p>\n                    <p>If you didn't sign up for EventHub, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T15:51:36.376Z",
+    "to": "audit+1763394695174@example.com",
+    "subject": "Password Reset Request - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Password Reset Request</h2>\n                    <p>You requested a password reset. Click the link below to reset your password:</p>\n                    <a href=\"http://localhost:5173/reset-password/b106bd5a5bbdde7314b64530e761933ca47bd96a731e98093d7ee3a0c4a7683f\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Reset Password\n                    </a>\n                    <p>Link expires in 1 hour.</p>\n                    <p>If you didn't request this, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T15:51:37.471Z",
+    "to": "audit+1763394695174@example.com",
+    "subject": "New registration for your event: Audit Event",
+    "text": "User audituser_1763394695171 registered for Audit Event. Quantity: 1",
+    "html": ""
+  },
+  {
+    "timestamp": "2025-11-17T15:51:39.503Z",
+    "to": "audit+1763394695174@example.com",
+    "subject": "Registration confirmed: Audit Event",
+    "text": "",
+    "html": "\n                        <p>Ciao audituser_1763394695171,</p>\n                        <p>La tua iscrizione all'evento <strong>Audit Event</strong> è stata confermata.</p>\n                        <p>Quantità biglietti: 1</p>\n                        <p>Totale pagato: 0 </p>\n                        <p>Grazie per aver usato EventHub.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T15:51:40.372Z",
+    "to": "audit+1763394695174@example.com",
+    "subject": "Registration cancelled for your event: Audit Event",
+    "text": "",
+    "html": "\n                        <p>Ciao audituser_1763394695171,</p>\n                        <p>L'utente audituser_1763394695171 ha annullato l'iscrizione per l'evento <strong>Audit Event</strong>.</p>\n                        <p>Quantità: 1</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T15:51:41.166Z",
+    "to": "audit+1763394695174@example.com",
+    "subject": "Registration cancelled: Audit Event",
+    "text": "",
+    "html": "\n                        <p>Ciao audituser_1763394695171,</p>\n                        <p>La tua iscrizione all'evento <strong>Audit Event</strong> è stata annullata correttamente.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T15:51:41.940Z",
+    "to": "admin@example.com",
+    "subject": "New Report: Event - EventHub",
+    "text": "",
+    "html": "\n                        <h2>New Report Submitted</h2>\n                        <p><strong>Type:</strong> Event</p>\n                        <p><strong>Reason:</strong> spam</p>\n                        <p><strong>Description:</strong> Audit report</p>\n                        <p><strong>Reporter:</strong> audituser_1763394695171 (audit+1763394695174@example.com)</p>\n                        <p><strong>Reported Event:</strong> Audit Event</p>\n                        <p>Please review this report in the admin panel.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T15:53:06.317Z",
+    "to": "audit+1763394786198@example.com",
+    "subject": "Email Verification - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Welcome to EventHub!</h2>\n                    <p>Please verify your email address to complete your registration.</p>\n                    <a href=\"http://localhost:5173/verify-email/8aa1d57e659d987335212ce6888480ae1fc20b7a7867443b572a784f7fc1ee17\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Verify Email\n                    </a>\n                    <p>Link expires in 24 hours.</p>\n                    <p>If you didn't sign up for EventHub, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T15:53:09.437Z",
+    "to": "audit+1763394786198@example.com",
+    "subject": "Password Reset Request - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Password Reset Request</h2>\n                    <p>You requested a password reset. Click the link below to reset your password:</p>\n                    <a href=\"http://localhost:5173/reset-password/97e6cb4052a0e36f2feb14db671098d6d3133d45a1eb49dd5dac19600d6a35df\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Reset Password\n                    </a>\n                    <p>Link expires in 1 hour.</p>\n                    <p>If you didn't request this, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T15:53:10.247Z",
+    "to": "audit+1763394786198@example.com",
+    "subject": "New registration for your event: Audit Event",
+    "text": "User audituser_1763394786198 registered for Audit Event. Quantity: 1",
+    "html": ""
+  },
+  {
+    "timestamp": "2025-11-17T15:53:10.882Z",
+    "to": "audit+1763394786198@example.com",
+    "subject": "Registration confirmed: Audit Event",
+    "text": "",
+    "html": "\n                        <p>Ciao audituser_1763394786198,</p>\n                        <p>La tua iscrizione all'evento <strong>Audit Event</strong> è stata confermata.</p>\n                        <p>Quantità biglietti: 1</p>\n                        <p>Totale pagato: 0 </p>\n                        <p>Grazie per aver usato EventHub.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T15:53:11.433Z",
+    "to": "audit+1763394786198@example.com",
+    "subject": "Registration cancelled for your event: Audit Event",
+    "text": "",
+    "html": "\n                        <p>Ciao audituser_1763394786198,</p>\n                        <p>L'utente audituser_1763394786198 ha annullato l'iscrizione per l'evento <strong>Audit Event</strong>.</p>\n                        <p>Quantità: 1</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T15:53:11.946Z",
+    "to": "audit+1763394786198@example.com",
+    "subject": "Registration cancelled: Audit Event",
+    "text": "",
+    "html": "\n                        <p>Ciao audituser_1763394786198,</p>\n                        <p>La tua iscrizione all'evento <strong>Audit Event</strong> è stata annullata correttamente.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T15:53:12.583Z",
+    "to": "admin@example.com",
+    "subject": "New Report: Event - EventHub",
+    "text": "",
+    "html": "\n                        <h2>New Report Submitted</h2>\n                        <p><strong>Type:</strong> Event</p>\n                        <p><strong>Reason:</strong> spam</p>\n                        <p><strong>Description:</strong> Audit report</p>\n                        <p><strong>Reporter:</strong> audituser_1763394786198 (audit+1763394786198@example.com)</p>\n                        <p><strong>Reported Event:</strong> Audit Event</p>\n                        <p>Please review this report in the admin panel.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T15:53:16.432Z",
+    "to": "audit+1763394796293@example.com",
+    "subject": "Email Verification - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Welcome to EventHub!</h2>\n                    <p>Please verify your email address to complete your registration.</p>\n                    <a href=\"http://localhost:5173/verify-email/aa72878afb49f93f91c1ddb0b11fb3e4200ab1e0992c1640ee73bfbfc496d549\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Verify Email\n                    </a>\n                    <p>Link expires in 24 hours.</p>\n                    <p>If you didn't sign up for EventHub, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T15:53:17.011Z",
+    "to": "audit+1763394796293@example.com",
+    "subject": "Password Reset Request - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Password Reset Request</h2>\n                    <p>You requested a password reset. Click the link below to reset your password:</p>\n                    <a href=\"http://localhost:5173/reset-password/9d35e522e830b2680dd27d9a179227a5ff956019e96b479ca64668c5c409d82b\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Reset Password\n                    </a>\n                    <p>Link expires in 1 hour.</p>\n                    <p>If you didn't request this, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T15:53:17.896Z",
+    "to": "audit+1763394796293@example.com",
+    "subject": "New registration for your event: Audit Event",
+    "text": "User audituser_1763394796293 registered for Audit Event. Quantity: 1",
+    "html": ""
+  },
+  {
+    "timestamp": "2025-11-17T15:53:18.514Z",
+    "to": "audit+1763394796293@example.com",
+    "subject": "Registration confirmed: Audit Event",
+    "text": "",
+    "html": "\n                        <p>Ciao audituser_1763394796293,</p>\n                        <p>La tua iscrizione all'evento <strong>Audit Event</strong> è stata confermata.</p>\n                        <p>Quantità biglietti: 1</p>\n                        <p>Totale pagato: 0 </p>\n                        <p>Grazie per aver usato EventHub.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T15:53:19.126Z",
+    "to": "audit+1763394796293@example.com",
+    "subject": "Registration cancelled for your event: Audit Event",
+    "text": "",
+    "html": "\n                        <p>Ciao audituser_1763394796293,</p>\n                        <p>L'utente audituser_1763394796293 ha annullato l'iscrizione per l'evento <strong>Audit Event</strong>.</p>\n                        <p>Quantità: 1</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T15:53:19.781Z",
+    "to": "audit+1763394796293@example.com",
+    "subject": "Registration cancelled: Audit Event",
+    "text": "",
+    "html": "\n                        <p>Ciao audituser_1763394796293,</p>\n                        <p>La tua iscrizione all'evento <strong>Audit Event</strong> è stata annullata correttamente.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T15:53:20.552Z",
+    "to": "admin@example.com",
+    "subject": "New Report: Event - EventHub",
+    "text": "",
+    "html": "\n                        <h2>New Report Submitted</h2>\n                        <p><strong>Type:</strong> Event</p>\n                        <p><strong>Reason:</strong> spam</p>\n                        <p><strong>Description:</strong> Audit report</p>\n                        <p><strong>Reporter:</strong> audituser_1763394796293 (audit+1763394796293@example.com)</p>\n                        <p><strong>Reported Event:</strong> Audit Event</p>\n                        <p>Please review this report in the admin panel.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T15:53:30.974Z",
+    "to": "test+1763394810850@example.com",
+    "subject": "Email Verification - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Welcome to EventHub!</h2>\n                    <p>Please verify your email address to complete your registration.</p>\n                    <a href=\"http://localhost:5173/verify-email/f843f40abe7c3fbaae591e82191c67302e81d062b4d330f5cce502ef4b6589e5\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Verify Email\n                    </a>\n                    <p>Link expires in 24 hours.</p>\n                    <p>If you didn't sign up for EventHub, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T15:53:31.618Z",
+    "to": "test+1763394810850@example.com",
+    "subject": "Password Reset Request - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Password Reset Request</h2>\n                    <p>You requested a password reset. Click the link below to reset your password:</p>\n                    <a href=\"http://localhost:5173/reset-password/61dffae91fbf212fa83f249c922ddc7dd0acd00b5e819f347c39ec162a8681a2\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Reset Password\n                    </a>\n                    <p>Link expires in 1 hour.</p>\n                    <p>If you didn't request this, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T15:53:32.310Z",
+    "to": "admin@example.com",
+    "subject": "New Report: Event - EventHub",
+    "text": "",
+    "html": "\n                        <h2>New Report Submitted</h2>\n                        <p><strong>Type:</strong> Event</p>\n                        <p><strong>Reason:</strong> inappropriate</p>\n                        <p><strong>Description:</strong> QA test report</p>\n                        <p><strong>Reporter:</strong> user_1763394810850 (test+1763394810850@example.com)</p>\n                        <p><strong>Reported Event:</strong> QA Test Event 1763394812250</p>\n                        <p>Please review this report in the admin panel.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T15:55:31.970Z",
+    "to": "test+1763394931832@example.com",
+    "subject": "Email Verification - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Welcome to EventHub!</h2>\n                    <p>Please verify your email address to complete your registration.</p>\n                    <a href=\"http://localhost:5173/verify-email/c251a17fd31235ac777d5260bd1464ae5510c889cfb1b6e06910c112da6e0e81\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Verify Email\n                    </a>\n                    <p>Link expires in 24 hours.</p>\n                    <p>If you didn't sign up for EventHub, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T15:55:32.774Z",
+    "to": "test+1763394931832@example.com",
+    "subject": "Password Reset Request - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Password Reset Request</h2>\n                    <p>You requested a password reset. Click the link below to reset your password:</p>\n                    <a href=\"http://localhost:5173/reset-password/8bf7c2b7e64b8ea9106cd5c3ea72848c71ca673ddf075dfdf649d525e8d88270\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Reset Password\n                    </a>\n                    <p>Link expires in 1 hour.</p>\n                    <p>If you didn't request this, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T15:55:33.354Z",
+    "to": "admin@example.com",
+    "subject": "New Report: Event - EventHub",
+    "text": "",
+    "html": "\n                        <h2>New Report Submitted</h2>\n                        <p><strong>Type:</strong> Event</p>\n                        <p><strong>Reason:</strong> inappropriate</p>\n                        <p><strong>Description:</strong> QA test report</p>\n                        <p><strong>Reporter:</strong> user_1763394931832 (test+1763394931832@example.com)</p>\n                        <p><strong>Reported Event:</strong> QA Test Event 1763394933320</p>\n                        <p>Please review this report in the admin panel.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T15:58:06.054Z",
+    "to": "test+1763395085918@example.com",
+    "subject": "Email Verification - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Welcome to EventHub!</h2>\n                    <p>Please verify your email address to complete your registration.</p>\n                    <a href=\"http://localhost:5173/verify-email/1adadeb08c2ff1313ac3186c34a5dfbe56099035d0a4e85d6930b903b256ca1e\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Verify Email\n                    </a>\n                    <p>Link expires in 24 hours.</p>\n                    <p>If you didn't sign up for EventHub, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T15:58:06.998Z",
+    "to": "test+1763395085918@example.com",
+    "subject": "Password Reset Request - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Password Reset Request</h2>\n                    <p>You requested a password reset. Click the link below to reset your password:</p>\n                    <a href=\"http://localhost:5173/reset-password/794fd2f9a1dff04474e095a5b07274aeebcf79a0fd6c4b7390fe1ffa7a01f1e9\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Reset Password\n                    </a>\n                    <p>Link expires in 1 hour.</p>\n                    <p>If you didn't request this, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T15:58:07.591Z",
+    "to": "admin@example.com",
+    "subject": "New Report: Event - EventHub",
+    "text": "",
+    "html": "\n                        <h2>New Report Submitted</h2>\n                        <p><strong>Type:</strong> Event</p>\n                        <p><strong>Reason:</strong> inappropriate</p>\n                        <p><strong>Description:</strong> QA test report</p>\n                        <p><strong>Reporter:</strong> user_1763395085918 (test+1763395085918@example.com)</p>\n                        <p><strong>Reported Event:</strong> QA Test Event 1763395087562</p>\n                        <p>Please review this report in the admin panel.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T15:58:27.010Z",
+    "to": "test+1763395106897@example.com",
+    "subject": "Email Verification - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Welcome to EventHub!</h2>\n                    <p>Please verify your email address to complete your registration.</p>\n                    <a href=\"http://localhost:5173/verify-email/4e5df38c9018fc2b67ed3e2f7bfbaa64611967afadd8833480ad0947f54238ae\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Verify Email\n                    </a>\n                    <p>Link expires in 24 hours.</p>\n                    <p>If you didn't sign up for EventHub, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T15:58:27.728Z",
+    "to": "test+1763395106897@example.com",
+    "subject": "Password Reset Request - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Password Reset Request</h2>\n                    <p>You requested a password reset. Click the link below to reset your password:</p>\n                    <a href=\"http://localhost:5173/reset-password/4b52f42e71912082abdc2bcdb09cbe713fb515989c783cf05e4d0af1613dfe2f\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Reset Password\n                    </a>\n                    <p>Link expires in 1 hour.</p>\n                    <p>If you didn't request this, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T15:58:28.325Z",
+    "to": "admin@example.com",
+    "subject": "New Report: Event - EventHub",
+    "text": "",
+    "html": "\n                        <h2>New Report Submitted</h2>\n                        <p><strong>Type:</strong> Event</p>\n                        <p><strong>Reason:</strong> inappropriate</p>\n                        <p><strong>Description:</strong> QA test report</p>\n                        <p><strong>Reporter:</strong> user_1763395106897 (test+1763395106897@example.com)</p>\n                        <p><strong>Reported Event:</strong> QA Test Event 1763395108292</p>\n                        <p>Please review this report in the admin panel.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T15:59:15.097Z",
+    "to": "test+1763395154980@example.com",
+    "subject": "Email Verification - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Welcome to EventHub!</h2>\n                    <p>Please verify your email address to complete your registration.</p>\n                    <a href=\"http://localhost:5173/verify-email/649d1389adf741ef8eeb94ec9411eaa6a0cc3528d688e75837ac9dc9d0f57a81\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Verify Email\n                    </a>\n                    <p>Link expires in 24 hours.</p>\n                    <p>If you didn't sign up for EventHub, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T15:59:15.804Z",
+    "to": "test+1763395154980@example.com",
+    "subject": "Password Reset Request - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Password Reset Request</h2>\n                    <p>You requested a password reset. Click the link below to reset your password:</p>\n                    <a href=\"http://localhost:5173/reset-password/678205627e813dba60282a776aa6ba4d20c9b94afae76c2e2488abd7afa297d2\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Reset Password\n                    </a>\n                    <p>Link expires in 1 hour.</p>\n                    <p>If you didn't request this, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T15:59:16.756Z",
+    "to": "admin@example.com",
+    "subject": "New Report: Event - EventHub",
+    "text": "",
+    "html": "\n                        <h2>New Report Submitted</h2>\n                        <p><strong>Type:</strong> Event</p>\n                        <p><strong>Reason:</strong> inappropriate</p>\n                        <p><strong>Description:</strong> QA test report</p>\n                        <p><strong>Reporter:</strong> user_1763395154980 (test+1763395154980@example.com)</p>\n                        <p><strong>Reported Event:</strong> QA Test Event 1763395156690</p>\n                        <p>Please review this report in the admin panel.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T16:00:13.107Z",
+    "to": "test+1763395212975@example.com",
+    "subject": "Email Verification - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Welcome to EventHub!</h2>\n                    <p>Please verify your email address to complete your registration.</p>\n                    <a href=\"http://localhost:5173/verify-email/fc9b0c9a5822203b6b130a3dd78b781f76541085323661794ac397e5554185a9\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Verify Email\n                    </a>\n                    <p>Link expires in 24 hours.</p>\n                    <p>If you didn't sign up for EventHub, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T16:00:13.840Z",
+    "to": "test+1763395212975@example.com",
+    "subject": "Password Reset Request - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Password Reset Request</h2>\n                    <p>You requested a password reset. Click the link below to reset your password:</p>\n                    <a href=\"http://localhost:5173/reset-password/371acc9be8793030848f5b8995fc5b3a130e1cffb0930904fd1e554a5e3a9715\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Reset Password\n                    </a>\n                    <p>Link expires in 1 hour.</p>\n                    <p>If you didn't request this, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T16:00:14.725Z",
+    "to": "admin@example.com",
+    "subject": "New Report: Event - EventHub",
+    "text": "",
+    "html": "\n                        <h2>New Report Submitted</h2>\n                        <p><strong>Type:</strong> Event</p>\n                        <p><strong>Reason:</strong> inappropriate</p>\n                        <p><strong>Description:</strong> QA test report</p>\n                        <p><strong>Reporter:</strong> user_1763395212975 (test+1763395212975@example.com)</p>\n                        <p><strong>Reported Event:</strong> QA Test Event 1763395214661</p>\n                        <p>Please review this report in the admin panel.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T16:01:08.383Z",
+    "to": "test+1763395268211@example.com",
+    "subject": "Email Verification - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Welcome to EventHub!</h2>\n                    <p>Please verify your email address to complete your registration.</p>\n                    <a href=\"http://localhost:5173/verify-email/e367b7f7fb15cda10740044d38f008ccee0b9e6b665512c108b8673e537c08bf\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Verify Email\n                    </a>\n                    <p>Link expires in 24 hours.</p>\n                    <p>If you didn't sign up for EventHub, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T16:01:10.099Z",
+    "to": "test+1763395268211@example.com",
+    "subject": "Password Reset Request - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Password Reset Request</h2>\n                    <p>You requested a password reset. Click the link below to reset your password:</p>\n                    <a href=\"http://localhost:5173/reset-password/a93ffa413933d44d686f24e97cea2246916f529a9d4e3e09b61febecb9b2da9d\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Reset Password\n                    </a>\n                    <p>Link expires in 1 hour.</p>\n                    <p>If you didn't request this, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T16:01:11.559Z",
+    "to": "test+1763395268211@example.com",
+    "subject": "New registration for your event: QA Test Event 1763395271513",
+    "text": "User user_1763395268211 registered for QA Test Event 1763395271513. Quantity: 2",
+    "html": ""
+  },
+  {
+    "timestamp": "2025-11-17T16:01:12.836Z",
+    "to": "test+1763395268211@example.com",
+    "subject": "Registration confirmed: QA Test Event 1763395271513",
+    "text": "",
+    "html": "\n                        <p>Ciao user_1763395268211,</p>\n                        <p>La tua iscrizione all'evento <strong>QA Test Event 1763395271513</strong> è stata confermata.</p>\n                        <p>Quantità biglietti: 2</p>\n                        <p>Totale pagato: 10 </p>\n                        <p>Grazie per aver usato EventHub.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T16:01:14.205Z",
+    "to": "test+1763395268211@example.com",
+    "subject": "Registration cancelled for your event: QA Test Event 1763395271513",
+    "text": "",
+    "html": "\n                        <p>Ciao user_1763395268211,</p>\n                        <p>L'utente user_1763395268211 ha annullato l'iscrizione per l'evento <strong>QA Test Event 1763395271513</strong>.</p>\n                        <p>Quantità: 2</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T16:01:15.798Z",
+    "to": "admin@example.com",
+    "subject": "New Report: Event - EventHub",
+    "text": "",
+    "html": "\n                        <h2>New Report Submitted</h2>\n                        <p><strong>Type:</strong> Event</p>\n                        <p><strong>Reason:</strong> inappropriate</p>\n                        <p><strong>Description:</strong> QA test report</p>\n                        <p><strong>Reporter:</strong> user_1763395268211 (test+1763395268211@example.com)</p>\n                        <p><strong>Reported Event:</strong> QA Test Event 1763395271513</p>\n                        <p>Please review this report in the admin panel.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T16:07:59.010Z",
+    "to": "test+1763395678861@example.com",
+    "subject": "Email Verification - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Welcome to EventHub!</h2>\n                    <p>Please verify your email address to complete your registration.</p>\n                    <a href=\"http://localhost:5173/verify-email/999dee41cd14ae8c0f6a56f2d757ef9a01c6a9f9057d3ae2373284fa9de89edb\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Verify Email\n                    </a>\n                    <p>Link expires in 24 hours.</p>\n                    <p>If you didn't sign up for EventHub, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T16:08:00.670Z",
+    "to": "test+1763395678861@example.com",
+    "subject": "Password Reset Request - EventHub",
+    "text": "",
+    "html": "\n                    <h2>Password Reset Request</h2>\n                    <p>You requested a password reset. Click the link below to reset your password:</p>\n                    <a href=\"http://localhost:5173/reset-password/d3af01f13d19f9e3db44d2b8294d8cb6272c4381f44810a9a5a807a59688e7c7\" style=\"display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;\">\n                        Reset Password\n                    </a>\n                    <p>Link expires in 1 hour.</p>\n                    <p>If you didn't request this, please ignore this email.</p>\n                "
+  },
+  {
+    "timestamp": "2025-11-17T16:08:01.961Z",
+    "to": "test+1763395678861@example.com",
+    "subject": "New registration for your event: QA Test Event 1763395681894",
+    "text": "User user_1763395678861 registered for QA Test Event 1763395681894. Quantity: 2",
+    "html": ""
+  },
+  {
+    "timestamp": "2025-11-17T16:08:03.170Z",
+    "to": "test+1763395678861@example.com",
+    "subject": "Registration confirmed: QA Test Event 1763395681894",
+    "text": "",
+    "html": "\n                        <p>Ciao user_1763395678861,</p>\n                        <p>La tua iscrizione all'evento <strong>QA Test Event 1763395681894</strong> è stata confermata.</p>\n                        <p>Quantità biglietti: 2</p>\n                        <p>Totale pagato: 10 </p>\n                        <p>Grazie per aver usato EventHub.</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T16:08:04.397Z",
+    "to": "test+1763395678861@example.com",
+    "subject": "Registration cancelled for your event: QA Test Event 1763395681894",
+    "text": "",
+    "html": "\n                        <p>Ciao user_1763395678861,</p>\n                        <p>L'utente user_1763395678861 ha annullato l'iscrizione per l'evento <strong>QA Test Event 1763395681894</strong>.</p>\n                        <p>Quantità: 2</p>\n                    "
+  },
+  {
+    "timestamp": "2025-11-17T16:08:05.624Z",
+    "to": "admin@example.com",
+    "subject": "New Report: Event - EventHub",
+    "text": "",
+    "html": "\n                        <h2>New Report Submitted</h2>\n                        <p><strong>Type:</strong> Event</p>\n                        <p><strong>Reason:</strong> inappropriate</p>\n                        <p><strong>Description:</strong> QA test report</p>\n                        <p><strong>Reporter:</strong> user_1763395678861 (test+1763395678861@example.com)</p>\n                        <p><strong>Reported Event:</strong> QA Test Event 1763395681894</p>\n                        <p>Please review this report in the admin panel.</p>\n                    "
+  }
+]

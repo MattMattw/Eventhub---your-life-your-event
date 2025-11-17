@@ -16,6 +16,8 @@ router.delete('/events/:id', adminController.deleteEvent);
 
 // Users management
 router.get('/users', adminController.getUsers);
+// Support blocking/unblocking from admin UI (frontend posts to /users/:id/block)
+router.post('/users/:id/block', adminController.updateUserStatus);
 router.patch('/users/:id/status', adminController.updateUserStatus);
 router.patch('/users/:id/role', adminController.updateUserRole);
 
