@@ -1,6 +1,9 @@
 const User = require('../models/user');
 const jwt = require('../utils/jwt');
-const { sendEmail } = require('../utils/email');
+const { enqueueEmail, sendEmailImmediate } = require('../utils/email');
+const RefreshToken = require('../models/refreshToken');
+const crypto = require('crypto');
+const logger = require('../utils/logger');
 const { validationResult } = require('express-validator');
 
 exports.register = async (req, res) => {
@@ -56,9 +59,18 @@ exports.register = async (req, res) => {
 
         // Generate JWT token (can be used immediately, but features limited until verified)
         const token = jwt.generateToken(user._id);
+        // Create refresh token
+        const refreshTokenValue = crypto.randomBytes(40).toString('hex');
+        const refresh = new RefreshToken({
+            user: user._id,
+            token: refreshTokenValue,
+            expiresAt: new Date(Date.now() + (1000 * 60 * 60 * 24 * 7)) // 7 days
+        });
+        await refresh.save();
 
         res.status(201).json({
             token,
+            refreshToken: refreshTokenValue,
             user: {
                 id: user._id.toString(),
                 username: user.username,
@@ -94,9 +106,17 @@ exports.login = async (req, res) => {
 
         // Generate JWT token
         const token = jwt.generateToken(user._id);
+        const refreshTokenValue = crypto.randomBytes(40).toString('hex');
+        const refresh = new RefreshToken({
+            user: user._id,
+            token: refreshTokenValue,
+            expiresAt: new Date(Date.now() + (1000 * 60 * 60 * 24 * 7)) // 7 days
+        });
+        await refresh.save();
 
         res.json({
             token,
+            refreshToken: refreshTokenValue,
             user: {
                 id: user._id.toString(),
                 username: user.username,
@@ -247,17 +267,35 @@ exports.resetPassword = async (req, res) => {
 
 exports.logout = async (req, res) => {
     try {
-        // In a production app, you would:
-        // 1. Add token to a blacklist (Redis or DB)
-        // 2. Clear any server-side sessions
-        // 3. Invalidate refresh tokens
-        // 
-        // For now, logout is client-side (token removed from localStorage)
-        // Client should delete the token and redirect to login
-        
+        const { refreshToken } = req.body;
+        if (refreshToken) {
+            const rt = await RefreshToken.findOne({ token: refreshToken });
+            if (rt) {
+                rt.revoked = true;
+                await rt.save();
+            }
+        }
+        // Optionally add access token revocation (e.g., store jti in Redis)
         res.status(200).json({ message: 'Logged out successfully' });
     } catch (error) {
-        console.error('Logout error:', error);
+        logger.error({ error }, 'Logout error');
+        res.status(500).json({ message: 'Server error' });
+    }
+};
+
+exports.refreshToken = async (req, res) => {
+    try {
+        const { refreshToken } = req.body;
+        if (!refreshToken) return res.status(400).json({ message: 'Refresh token required' });
+
+        const stored = await RefreshToken.findOne({ token: refreshToken, revoked: false, expiresAt: { $gt: Date.now() } }).populate('user');
+        if (!stored) return res.status(401).json({ message: 'Invalid refresh token' });
+
+        // Issue new access token
+        const newToken = jwt.generateToken(stored.user._id);
+        res.json({ token: newToken });
+    } catch (error) {
+        logger.error({ error }, 'Refresh token error');
         res.status(500).json({ message: 'Server error' });
     }
 };

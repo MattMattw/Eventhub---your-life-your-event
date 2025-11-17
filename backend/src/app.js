@@ -1,7 +1,10 @@
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const pinoHttp = require('pino-http');
 require('dotenv').config();
+const logger = require('./utils/logger');
 
 // Import routes
 const userRoutes = require('./routes/userRoutes');
@@ -15,13 +18,26 @@ const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
 
-// Middleware
+// Security & logging middleware
+app.use(helmet());
+app.use(pinoHttp({ logger }));
+
 app.use(cors({
-    origin: process.env.ALLOWED_ORIGINS.split(','),
+    origin: process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : '*',
     credentials: true
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Rate limiting for auth-sensitive endpoints
+const authLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+    standardHeaders: true,
+    legacyHeaders: false
+});
+app.use('/api/users/login', authLimiter);
+app.use('/api/users/forgot-password', authLimiter);
 
 // Routes
 app.use('/api/users', userRoutes);

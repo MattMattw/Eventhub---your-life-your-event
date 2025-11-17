@@ -42,7 +42,11 @@ router.post('/reset-password', [
 ], userController.resetPassword);
 
 // Logout user
+// Logout user (accepts refreshToken in body to revoke)
 router.post('/logout', authMiddleware, userController.logout);
+
+// Refresh access token
+router.post('/token', userController.refreshToken);
 
 // Verify email
 router.post('/verify-email', [

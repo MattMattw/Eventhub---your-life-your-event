@@ -1,10 +1,13 @@
 const Registration = require('../models/registration');
 const Event = require('../models/event');
 const { getIo } = require('../sockets/chatSocket');
-const { sendEmail } = require('../utils/email');
+const { enqueueEmail, sendEmailImmediate } = require('../utils/email');
 const User = require('../models/user');
+const mongoose = require('mongoose');
+const logger = require('../utils/logger');
 
 exports.createRegistration = async (req, res) => {
+    const session = await mongoose.startSession();
     try {
         const { eventId, ticketQuantity } = req.body;
 
@@ -46,19 +49,30 @@ exports.createRegistration = async (req, res) => {
         // Calculate total price
         const totalPrice = event.price * ticketQuantity;
 
-        const registration = new Registration({
-            event: eventId,
-            user: req.user.id,
-            ticketQuantity,
-            totalPrice,
-            status: 'confirmed'
+        // Use a transaction to create registration and decrement spots
+        let registration;
+        await session.withTransaction(async () => {
+            // double-check available spots atomically
+            const updated = await Event.findOneAndUpdate(
+                { _id: eventId, availableSpots: { $gte: ticketQuantity }, status: 'published' },
+                { $inc: { availableSpots: -ticketQuantity } },
+                { new: true, session }
+            );
+
+            if (!updated) {
+                throw new Error('Not enough available spots or event not available');
+            }
+
+            registration = new Registration({
+                event: eventId,
+                user: req.user.id,
+                ticketQuantity,
+                totalPrice,
+                status: 'confirmed'
+            });
+
+            await registration.save({ session });
         });
-
-        await registration.save();
-
-        // Decrement available spots
-        event.availableSpots -= ticketQuantity;
-        await event.save();
 
         // Emit real-time notification to event chat room
         try {
@@ -79,28 +93,38 @@ exports.createRegistration = async (req, res) => {
                 userId: req.user.id
             });
         } catch (err) {
-            console.warn('Socket.io not initialized, skipping notifications');
+            logger.warn({ err }, 'Socket.io not initialized, skipping notifications');
         }
 
         // Send email to event organizer (if available)
         try {
             const eventOrganizer = await User.findById(event.organizer);
             if (eventOrganizer && eventOrganizer.email) {
-                await sendEmail({
+                await enqueueEmail({
                     to: eventOrganizer.email,
                     subject: `New registration for your event: ${event.title}`,
                     text: `User ${req.user.username || req.user.id} registered for ${event.title}. Quantity: ${ticketQuantity}`
                 });
             }
         } catch (err) {
-            console.warn('Failed to send organizer email', err);
+            logger.warn({ err }, 'Failed to enqueue organizer email');
+            // Try immediate send as fallback
+            try {
+                await sendEmailImmediate({
+                    to: eventOrganizer?.email,
+                    subject: `New registration for your event: ${event.title}`,
+                    text: `User ${req.user.username || req.user.id} registered for ${event.title}. Quantity: ${ticketQuantity}`
+                });
+            } catch (e) {
+                logger.error({ e }, 'Immediate send also failed');
+            }
         }
 
         // Send confirmation email to the registering user
         try {
             const registeringUser = await User.findById(req.user.id);
             if (registeringUser && registeringUser.email) {
-                await sendEmail({
+                await enqueueEmail({
                     to: registeringUser.email,
                     subject: `Registration confirmed: ${event.title}`,
                     html: `
@@ -113,13 +137,28 @@ exports.createRegistration = async (req, res) => {
                 });
             }
         } catch (err) {
-            console.warn('Failed to send confirmation email to user', err);
+            logger.warn({ err }, 'Failed to enqueue confirmation email to user');
+            try {
+                await sendEmailImmediate({
+                    to: registeringUser?.email,
+                    subject: `Registration confirmed: ${event.title}`,
+                    html: `Ciao ${registeringUser?.username || ''}, la tua iscrizione è confermata.`
+                });
+            } catch (e) {
+                logger.error({ e }, 'Immediate send also failed for user confirmation');
+            }
         }
 
         res.status(201).json(registration);
     } catch (error) {
-        console.error('Create registration error:', error);
+        logger.error({ error }, 'Create registration error');
+        if (session.inTransaction()) await session.abortTransaction();
+        if (error.message && error.message.includes('Not enough available spots')) {
+            return res.status(400).json({ message: error.message });
+        }
         res.status(500).json({ message: 'Server error' });
+    } finally {
+        session.endSession();
     }
 };
 
@@ -185,35 +224,42 @@ exports.updateRegistration = async (req, res) => {
 };
 
 exports.cancelRegistration = async (req, res) => {
+    const session = await mongoose.startSession();
     try {
-        const registration = await Registration.findById(req.params.id);
+        session.startTransaction();
+        const registration = await Registration.findById(req.params.id).session(session);
 
         if (!registration) {
+            await session.abortTransaction();
             return res.status(404).json({ message: 'Registration not found' });
         }
 
         // Check if user owns the registration
         if (registration.user.toString() !== req.user.id) {
+            await session.abortTransaction();
             return res.status(403).json({ message: 'Not authorized' });
         }
 
         // Prevent cancelling already cancelled registration
         if (registration.status === 'cancelled') {
+            await session.abortTransaction();
             return res.status(400).json({ message: 'Registration already cancelled' });
         }
 
         const previousStatus = registration.status;
         registration.status = 'cancelled';
-        await registration.save();
+        await registration.save({ session });
 
         // Increment available spots (only if was confirmed or pending)
         if (previousStatus !== 'cancelled') {
-            const event = await Event.findById(registration.event);
+            const event = await Event.findById(registration.event).session(session);
             if (event) {
                 event.availableSpots += registration.ticketQuantity;
-                await event.save();
+                await event.save({ session });
             }
         }
+
+        await session.commitTransaction();
 
         // Notify via socket
         try {
@@ -230,7 +276,7 @@ exports.cancelRegistration = async (req, res) => {
                 userId: req.user.id
             });
         } catch (err) {
-            console.warn('Socket.io not initialized, skipping cancel notifications');
+            logger.warn({ err }, 'Socket.io not initialized, skipping cancel notifications');
         }
 
         // Send cancellation emails to organizer and user
@@ -239,7 +285,7 @@ exports.cancelRegistration = async (req, res) => {
             const user = await User.findById(registration.user);
 
             if (event && event.organizer && event.organizer.email) {
-                await sendEmail({
+                await enqueueEmail({
                     to: event.organizer.email,
                     subject: `Registration cancelled for your event: ${event.title}`,
                     html: `
@@ -251,7 +297,7 @@ exports.cancelRegistration = async (req, res) => {
             }
 
             if (user && user.email) {
-                await sendEmail({
+                await enqueueEmail({
                     to: user.email,
                     subject: `Registration cancelled: ${event ? event.title : ''}`,
                     html: `
@@ -261,12 +307,15 @@ exports.cancelRegistration = async (req, res) => {
                 });
             }
         } catch (emailErr) {
-            console.warn('Failed to send cancellation emails', emailErr);
+            logger.warn({ emailErr }, 'Failed to enqueue cancellation emails');
         }
 
         res.json({ message: 'Registration cancelled' });
     } catch (error) {
-        console.error('Cancel registration error:', error);
+        logger.error({ error }, 'Cancel registration error');
+        await session.abortTransaction();
         res.status(500).json({ message: 'Server error' });
+    } finally {
+        session.endSession();
     }
 };

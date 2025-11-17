@@ -3,8 +3,9 @@ const Event = require('../models/event');
 const Report = require('../models/report');
 const Registration = require('../models/registration');
 const Message = require('../models/message');
-const { sendEmail } = require('../utils/email');
+const { enqueueEmail, sendEmailImmediate } = require('../utils/email');
 const { getIo } = require('../sockets/chatSocket');
+const logger = require('../utils/logger');
 
 // Get admin dashboard statistics
 exports.getStats = async (req, res) => {
@@ -273,15 +274,20 @@ exports.deleteEvent = async (req, res) => {
         // Notify organizer by email if available
         try {
             if (event.organizer && event.organizer.email) {
-                await sendEmail({
-                    to: event.organizer.email,
-                    subject: `Il tuo evento "${event.title}" è stato eliminato`,
-                    text: `Ciao ${event.organizer.username || ''},\n\nL'evento \"${event.title}\" programmato per ${event.date} è stato eliminato dall'amministratore. Se hai bisogno di informazioni, contatta il supporto.`,
-                    html: `<p>Ciao ${event.organizer.username || ''},</p><p>L'evento <strong>${event.title}</strong> è stato eliminato dall'amministratore.</p>`
-                });
+                try {
+                    await enqueueEmail({
+                        to: event.organizer.email,
+                        subject: `Il tuo evento "${event.title}" è stato eliminato`,
+                        text: `Ciao ${event.organizer.username || ''},\n\nL'evento \"${event.title}\" programmato per ${event.date} è stato eliminato dall'amministratore. Se hai bisogno di informazioni, contatta il supporto.`,
+                        html: `<p>Ciao ${event.organizer.username || ''},</p><p>L'evento <strong>${event.title}</strong> è stato eliminato dall'amministratore.</p>`
+                    });
+                } catch (emailErr) {
+                    logger.warn({ emailErr }, 'Failed to enqueue organizer notification email');
+                    try { await sendEmailImmediate({ to: event.organizer.email, subject: `Il tuo evento "${event.title}" è stato eliminato`, text: 'Evento eliminato' }); } catch (_) {}
+                }
             }
         } catch (emailErr) {
-            console.warn('Failed to send organizer notification email:', emailErr);
+            logger.warn({ emailErr }, 'Failed to process organizer notification email');
         }
 
         // Emit socket notification to admins if socket.io initialized
@@ -295,7 +301,7 @@ exports.deleteEvent = async (req, res) => {
 
         res.json({ message: 'Evento eliminato con successo' });
     } catch (error) {
-        console.error('Error deleting event:', error);
+        logger.error({ error }, 'Error deleting event');
         res.status(500).json({ message: 'Errore nell\'eliminazione dell\'evento' });
     }
 };

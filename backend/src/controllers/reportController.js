@@ -2,7 +2,8 @@ const Report = require('../models/report');
 const Event = require('../models/event');
 const User = require('../models/user');
 const { getIo } = require('../sockets/chatSocket');
-const { sendEmail } = require('../utils/email');
+const { enqueueEmail, sendEmailImmediate } = require('../utils/email');
+const logger = require('../utils/logger');
 const { validationResult } = require('express-validator');
 
 // Create a new report (event or user)
@@ -67,27 +68,33 @@ exports.createReport = async (req, res) => {
         try {
             const admins = await User.find({ role: 'admin' });
             for (const admin of admins) {
-                await sendEmail({
-                    to: admin.email,
-                    subject: `New Report: ${type === 'event' ? 'Event' : 'User'} - EventHub`,
-                    html: `
-                        <h2>New Report Submitted</h2>
-                        <p><strong>Type:</strong> ${type.charAt(0).toUpperCase() + type.slice(1)}</p>
-                        <p><strong>Reason:</strong> ${reason}</p>
-                        <p><strong>Description:</strong> ${description || ''}</p>
-                        <p><strong>Reporter:</strong> ${report.reporter.username} (${report.reporter.email})</p>
-                        <p><strong>Reported ${type === 'event' ? 'Event' : 'User'}:</strong> ${type === 'event' ? report.event?.title : report.user?.username}</p>
-                        <p>Please review this report in the admin panel.</p>
-                    `
-                });
+                try {
+                    await enqueueEmail({
+                        to: admin.email,
+                        subject: `New Report: ${type === 'event' ? 'Event' : 'User'} - EventHub`,
+                        html: `
+                            <h2>New Report Submitted</h2>
+                            <p><strong>Type:</strong> ${type.charAt(0).toUpperCase() + type.slice(1)}</p>
+                            <p><strong>Reason:</strong> ${reason}</p>
+                            <p><strong>Description:</strong> ${description || ''}</p>
+                            <p><strong>Reporter:</strong> ${report.reporter.username} (${report.reporter.email})</p>
+                            <p><strong>Reported ${type === 'event' ? 'Event' : 'User'}:</strong> ${type === 'event' ? report.event?.title : report.user?.username}</p>
+                            <p>Please review this report in the admin panel.</p>
+                        `
+                    });
+                } catch (e) {
+                    logger.warn({ e, admin: admin.email }, 'Failed to enqueue report email to admin');
+                    // fallback immediate
+                    try { await sendEmailImmediate({ to: admin.email, subject: `New Report: ${type === 'event' ? 'Event' : 'User'} - EventHub`, html: 'New report submitted' }); } catch (_) {}
+                }
             }
         } catch (err) {
-            console.warn('Failed to send report email to admins', err);
+            logger.warn({ err }, 'Failed to process admin report emails');
         }
 
         res.status(201).json(report);
     } catch (error) {
-        console.error('Create report error:', error);
+        logger.error({ error }, 'Create report error');
         res.status(500).json({ message: 'Server error' });
     }
 };
