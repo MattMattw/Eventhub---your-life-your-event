@@ -1,0 +1,290 @@
+Error sending email: Error: Data command failed: 550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing
+    at SMTPConnection._formatError (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:809:19)
+    at SMTPConnection._actionDATA (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1702:34)
+    at SMTPConnection.<anonymous> (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1674:26)
+    at SMTPConnection._processResponse (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:993:20)
+    at SMTPConnection._onData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5) {
+  code: 'EENVELOPE',
+  response: '550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing',
+  responseCode: 550,
+  command: 'DATA'
+}
+Error sending password reset email (continuing): Data command failed: 550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing
+Error sending email: Error: Data command failed: 550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing
+    at SMTPConnection._formatError (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:809:19)
+    at SMTPConnection._actionDATA (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1702:34)
+    at SMTPConnection.<anonymous> (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1674:26)
+    at SMTPConnection._processResponse (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:993:20)
+    at SMTPConnection._onData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5) {
+  code: 'EENVELOPE',
+  response: '550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing',
+  responseCode: 550,
+  command: 'DATA'
+}
+Failed to send organizer email Error: Data command failed: 550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing
+    at SMTPConnection._formatError (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:809:19)
+    at SMTPConnection._actionDATA (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1702:34)
+    at SMTPConnection.<anonymous> (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1674:26)
+    at SMTPConnection._processResponse (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:993:20)
+    at SMTPConnection._onData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5) {
+  code: 'EENVELOPE',
+  response: '550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing',
+  responseCode: 550,
+  command: 'DATA'
+}
+Error sending email: Error: Data command failed: 550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing
+    at SMTPConnection._formatError (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:809:19)
+    at SMTPConnection._actionDATA (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1702:34)
+    at SMTPConnection.<anonymous> (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1674:26)
+    at SMTPConnection._processResponse (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:993:20)
+    at SMTPConnection._onData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5) {
+  code: 'EENVELOPE',
+  response: '550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing',
+  responseCode: 550,
+  command: 'DATA'
+}
+Failed to send confirmation email to user Error: Data command failed: 550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing
+    at SMTPConnection._formatError (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:809:19)
+    at SMTPConnection._actionDATA (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1702:34)
+    at SMTPConnection.<anonymous> (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1674:26)
+    at SMTPConnection._processResponse (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:993:20)
+    at SMTPConnection._onData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5) {
+  code: 'EENVELOPE',
+  response: '550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing',
+  responseCode: 550,
+  command: 'DATA'
+}
+Error sending email: Error: Data command failed: 550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing
+    at SMTPConnection._formatError (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:809:19)
+    at SMTPConnection._actionDATA (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1702:34)
+    at SMTPConnection.<anonymous> (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1674:26)
+    at SMTPConnection._processResponse (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:993:20)
+    at SMTPConnection._onData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5) {
+  code: 'EENVELOPE',
+  response: '550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing',
+  responseCode: 550,
+  command: 'DATA'
+}
+Failed to send cancellation emails Error: Data command failed: 550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing
+    at SMTPConnection._formatError (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:809:19)
+    at SMTPConnection._actionDATA (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1702:34)
+    at SMTPConnection.<anonymous> (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1674:26)
+    at SMTPConnection._processResponse (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:993:20)
+    at SMTPConnection._onData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5) {
+  code: 'EENVELOPE',
+  response: '550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing',
+  responseCode: 550,
+  command: 'DATA'
+}
+Error sending email: Error: Data command failed: 550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing
+    at SMTPConnection._formatError (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:809:19)
+    at SMTPConnection._actionDATA (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1702:34)
+    at SMTPConnection.<anonymous> (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1674:26)
+    at SMTPConnection._processResponse (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:993:20)
+    at SMTPConnection._onData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5) {
+  code: 'EENVELOPE',
+  response: '550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing',
+  responseCode: 550,
+  command: 'DATA'
+}
+Failed to send report email to admins Error: Data command failed: 550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing
+    at SMTPConnection._formatError (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:809:19)
+    at SMTPConnection._actionDATA (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1702:34)
+    at SMTPConnection.<anonymous> (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1674:26)
+    at SMTPConnection._processResponse (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:993:20)
+    at SMTPConnection._onData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5) {
+  code: 'EENVELOPE',
+  response: '550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing',
+  responseCode: 550,
+  command: 'DATA'
+}
+Error sending email: Error: Data command failed: 550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing
+    at SMTPConnection._formatError (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:809:19)
+    at SMTPConnection._actionDATA (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1702:34)
+    at SMTPConnection.<anonymous> (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1674:26)
+    at SMTPConnection._processResponse (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:993:20)
+    at SMTPConnection._onData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5) {
+  code: 'EENVELOPE',
+  response: '550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing',
+  responseCode: 550,
+  command: 'DATA'
+}
+Error sending password reset email (continuing): Data command failed: 550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing
+Error sending email: Error: Data command failed: 550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing
+    at SMTPConnection._formatError (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:809:19)
+    at SMTPConnection._actionDATA (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1702:34)
+    at SMTPConnection.<anonymous> (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1674:26)
+    at SMTPConnection._processResponse (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:993:20)
+    at SMTPConnection._onData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5) {
+  code: 'EENVELOPE',
+  response: '550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing',
+  responseCode: 550,
+  command: 'DATA'
+}
+Failed to send organizer email Error: Data command failed: 550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing
+    at SMTPConnection._formatError (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:809:19)
+    at SMTPConnection._actionDATA (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1702:34)
+    at SMTPConnection.<anonymous> (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1674:26)
+    at SMTPConnection._processResponse (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:993:20)
+    at SMTPConnection._onData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5) {
+  code: 'EENVELOPE',
+  response: '550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing',
+  responseCode: 550,
+  command: 'DATA'
+}
+Error sending email: Error: Data command failed: 550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing
+    at SMTPConnection._formatError (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:809:19)
+    at SMTPConnection._actionDATA (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1702:34)
+    at SMTPConnection.<anonymous> (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1674:26)
+    at SMTPConnection._processResponse (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:993:20)
+    at SMTPConnection._onData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5) {
+  code: 'EENVELOPE',
+  response: '550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing',
+  responseCode: 550,
+  command: 'DATA'
+}
+Failed to send confirmation email to user Error: Data command failed: 550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing
+    at SMTPConnection._formatError (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:809:19)
+    at SMTPConnection._actionDATA (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1702:34)
+    at SMTPConnection.<anonymous> (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1674:26)
+    at SMTPConnection._processResponse (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:993:20)
+    at SMTPConnection._onData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5) {
+  code: 'EENVELOPE',
+  response: '550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing',
+  responseCode: 550,
+  command: 'DATA'
+}
+Error sending email: Error: Data command failed: 550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing
+    at SMTPConnection._formatError (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:809:19)
+    at SMTPConnection._actionDATA (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1702:34)
+    at SMTPConnection.<anonymous> (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1674:26)
+    at SMTPConnection._processResponse (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:993:20)
+    at SMTPConnection._onData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5) {
+  code: 'EENVELOPE',
+  response: '550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing',
+  responseCode: 550,
+  command: 'DATA'
+}
+Failed to send cancellation emails Error: Data command failed: 550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing
+    at SMTPConnection._formatError (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:809:19)
+    at SMTPConnection._actionDATA (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1702:34)
+    at SMTPConnection.<anonymous> (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1674:26)
+    at SMTPConnection._processResponse (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:993:20)
+    at SMTPConnection._onData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5) {
+  code: 'EENVELOPE',
+  response: '550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing',
+  responseCode: 550,
+  command: 'DATA'
+}
+Error sending email: Error: Data command failed: 550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing
+    at SMTPConnection._formatError (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:809:19)
+    at SMTPConnection._actionDATA (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1702:34)
+    at SMTPConnection.<anonymous> (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1674:26)
+    at SMTPConnection._processResponse (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:993:20)
+    at SMTPConnection._onData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5) {
+  code: 'EENVELOPE',
+  response: '550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing',
+  responseCode: 550,
+  command: 'DATA'
+}
+Failed to send report email to admins Error: Data command failed: 550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing
+    at SMTPConnection._formatError (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:809:19)
+    at SMTPConnection._actionDATA (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1702:34)
+    at SMTPConnection.<anonymous> (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:1674:26)
+    at SMTPConnection._processResponse (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:993:20)
+    at SMTPConnection._onData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:774:14)
+    at SMTPConnection._onSocketData (C:\Users\Mattia.Martinelli\.node\eventhub\backend\node_modules\nodemailer\lib\smtp-connection\index.js:195:44)
+    at TLSSocket.emit (node:events:519:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5) {
+  code: 'EENVELOPE',
+  response: '550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing',
+  responseCode: 550,
+  command: 'DATA'
+}

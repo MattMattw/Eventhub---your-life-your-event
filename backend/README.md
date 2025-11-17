@@ -17,6 +17,7 @@ Backend server for EventHub - Your Life, Your Event. A complete event management
 - Node.js 14+ and npm
 - MongoDB database
 - SMTP server credentials for email (optional for development)
+- Redis (for queued background email delivery). If not available, the system falls back to immediate email sending.
 
 ## Installation
 
@@ -291,6 +292,11 @@ npm install
 
 # Start with nodemon (auto-reload)
 npm run dev
+
+# Start email worker (processes queued email jobs)
+```bash
+npm run start:worker
+```
 
 # Run tests (if available)
 npm test

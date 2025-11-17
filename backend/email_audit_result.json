@@ -3,11 +3,11 @@
     "step": "register",
     "status": 201,
     "data": {
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTFiNDRlY2Q3MDFkYzU0NzM3YTBkZTciLCJpYXQiOjE3NjMzOTQ3OTYsImV4cCI6MTc2MzQ4MTE5Nn0.InV6TdS1RhnLtuq0cjepE9CQbzPJnjNAgmE225JCK6M",
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTFiNDlhYTFhMmUxZWViOGJjMWEzYjMiLCJpYXQiOjE3NjMzOTYwMTEsImV4cCI6MTc2MzQ4MjQxMX0.Pk5D7KBDFEO99pzLliHcmlLJTEPQq8HwH-k4ofcBlZQ",
       "user": {
-        "id": "691b44ecd701dc54737a0de7",
-        "username": "audituser_1763394796293",
-        "email": "audit+1763394796293@example.com",
+        "id": "691b49aa1a2e1eeb8bc1a3b3",
+        "username": "audituser_1763396010299",
+        "email": "audit+1763396010299@example.com",
         "firstName": "Audit",
         "lastName": "User",
         "role": "user",
@@ -33,7 +33,7 @@
     "step": "login",
     "status": 200,
     "data": {
-      "user": "691b44ecd701dc54737a0de7"
+      "user": "691b49aa1a2e1eeb8bc1a3b3"
     }
   },
   {
@@ -42,19 +42,19 @@
     "data": {
       "title": "Audit Event",
       "description": "Event created by audit script",
-      "date": "2025-11-18T15:53:17.883Z",
+      "date": "2025-11-18T16:13:33.393Z",
       "location": "Online",
       "category": "audit",
-      "organizer": "691b44ecd701dc54737a0de7",
+      "organizer": "691b49aa1a2e1eeb8bc1a3b3",
       "capacity": 10,
       "price": 0,
       "status": "published",
       "isPrivate": false,
       "tags": [],
-      "_id": "691b44edd701dc54737a0dee",
+      "_id": "691b49ad1a2e1eeb8bc1a3ba",
       "availableSpots": 10,
-      "createdAt": "2025-11-17T15:53:17.887Z",
-      "updatedAt": "2025-11-17T15:53:17.887Z",
+      "createdAt": "2025-11-17T16:13:33.399Z",
+      "updatedAt": "2025-11-17T16:13:33.399Z",
       "__v": 0
     }
   },
@@ -62,15 +62,15 @@
     "step": "register-event",
     "status": 201,
     "data": {
-      "event": "691b44edd701dc54737a0dee",
-      "user": "691b44ecd701dc54737a0de7",
+      "event": "691b49ad1a2e1eeb8bc1a3ba",
+      "user": "691b49aa1a2e1eeb8bc1a3b3",
       "status": "confirmed",
       "ticketQuantity": 1,
       "totalPrice": 0,
       "paymentStatus": "pending",
-      "_id": "691b44edd701dc54737a0df3",
-      "createdAt": "2025-11-17T15:53:17.894Z",
-      "updatedAt": "2025-11-17T15:53:17.894Z",
+      "_id": "691b49ad1a2e1eeb8bc1a3bf",
+      "createdAt": "2025-11-17T16:13:33.410Z",
+      "updatedAt": "2025-11-17T16:13:33.410Z",
       "__v": 0
     }
   },
@@ -87,20 +87,20 @@
     "data": {
       "type": "event",
       "reporter": {
-        "_id": "691b44ecd701dc54737a0de7",
-        "username": "audituser_1763394796293",
-        "email": "audit+1763394796293@example.com"
+        "_id": "691b49aa1a2e1eeb8bc1a3b3",
+        "username": "audituser_1763396010299",
+        "email": "audit+1763396010299@example.com"
       },
       "event": {
-        "_id": "691b44edd701dc54737a0dee",
+        "_id": "691b49ad1a2e1eeb8bc1a3ba",
         "title": "Audit Event"
       },
       "reason": "spam",
       "description": "Audit report",
       "status": "pending",
-      "_id": "691b44f0d701dc54737a0e02",
-      "createdAt": "2025-11-17T15:53:20.547Z",
-      "updatedAt": "2025-11-17T15:53:20.547Z",
+      "_id": "691b49b11a2e1eeb8bc1a3ce",
+      "createdAt": "2025-11-17T16:13:37.375Z",
+      "updatedAt": "2025-11-17T16:13:37.375Z",
       "__v": 0
     }
   },
