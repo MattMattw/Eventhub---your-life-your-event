@@ -1,5 +1,12 @@
 {
+  "name": "eventhub-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "concurrently \"npm run dev --prefix frontend\" \"npm start --prefix backend\""
+  },
   "dependencies": {
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "concurrently": "^8.2.0"
   }
 }
