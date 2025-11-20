@@ -50,6 +50,11 @@ app.use('/api/registrations', registrationRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/reports', reportRoutes);
 
+// Simple test route for quick frontend fetch checks
+app.get('/api/hello', (req, res) => {
+    res.json({ message: 'Hello from EventHub backend', timestamp: new Date().toISOString() });
+});
+
 // Error handling middleware
 app.use(errorHandler);
 
