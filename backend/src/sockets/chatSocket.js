@@ -6,9 +6,10 @@ const Message = require('../models/message');
 let io;
 
 exports.initializeSocket = (server) => {
+    const allowedOrigins = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',') : ['http://localhost:5173'];
     io = socketIo(server, {
         cors: {
-            origin: process.env.ALLOWED_ORIGINS.split(','),
+            origin: allowedOrigins,
             methods: ["GET", "POST"],
             credentials: true
         }
