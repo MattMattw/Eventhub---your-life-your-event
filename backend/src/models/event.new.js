@@ -77,7 +77,7 @@ const eventSchema = new mongoose.Schema({
     timestamps: true
 });
 
-// Virtual per verificare se l'evento è completo
+// Virtual per verificare se l'evento è completo in termini di posti disponibili
 eventSchema.virtual('isFull').get(function() {
     return this.availableSpots === 0;
 });
